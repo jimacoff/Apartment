@@ -1,0 +1,32 @@
+<h1>Housing</h1>
+<%= flash[:alert]%>
+<div class="btn btn-default" style="margin-bottom:5%"><%= link_to 'New Property', new_property_path %></div>
+<br>
+
+<% @properties.each do |property| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-6" style="border:1px solid black">
+
+        <h3 style="padding-left:1% "> <%= property.content %></h3>
+        <h4 style="padding-left:10%"> Owned by:  <%= property.user.email %> </h4>
+
+        <h4>
+        <% if can? :update, property%>
+          <%= link_to 'Edit', edit_property_path(property) %>
+        <% end %>
+
+        <% if can? :update, property%>
+          <%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?'} %>
+        <% end %>
+        </h4>
+
+
+      
+
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
