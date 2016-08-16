@@ -1,0 +1,5 @@
+<p>Add Flat</p>
+<%= form_for ([@property, @property.flats.build]) do |f| %>
+  <%= f.text_area :content %>
+  <%= submit_tag "Add" %>
+<% end %>

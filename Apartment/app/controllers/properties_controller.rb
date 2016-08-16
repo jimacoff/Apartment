@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_property, only: [:show, :edit, :update, :destroy]
   # GET /properties
   # GET /properties.json
   def index
@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   # GET /properties/1.json
   def show
-    authorize! :update, @propery
+   
   end
 
   # GET /properties/new
@@ -18,9 +18,15 @@ class PropertiesController < ApplicationController
     @property = Property.new
   end
 
+  
+
   # GET /properties/1/edit
   def edit
      authorize! :update, @property
+  end
+
+  def description
+    render ('properties/description')
   end
 
   # POST /properties
@@ -66,6 +72,11 @@ class PropertiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+    def find_property
+       @property = Property.find(params[:id])
+    end
+
     def set_property
       @property = Property.find(params[:id])
     end

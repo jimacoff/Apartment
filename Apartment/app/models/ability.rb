@@ -8,19 +8,16 @@ class Ability
 
     else
 
-   
-
-            can :update, Property do |property|
-                property.user == user
-            end
-            can :destroy, Property do |property|
-                property.user == user
-            end
+        can :update, Property do |property|
+            property.user == user
+        end
+        can :destroy, Property do |property|
+            property.user == user
+        end
 
 
-            can :create, Property
-      
-        
+        can :create, Property
+  
     end
     # Define abilities for the passed in user here. For example:
     #
