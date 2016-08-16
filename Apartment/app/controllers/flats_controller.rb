@@ -1,22 +1,35 @@
 class FlatsController < ApplicationController
+  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  def new
+    @property = Property.find(params[:property_id])
+  end
+
   def create 
     @property = Property.find(params[:property_id])
-    @flat = @property.flats.build(flats_params)
+    @flat = @property.flats.build(flat_params)
     @flat.user = current_user
     @flat.save
 
-    redirect_to properties_url
+    redirect_to property_path(@property)
   end
 
   def destroy
-    @property = Property.find (params[:property_id])
-    @flat = @property.flats.find(params[:id]).destroy
-    redirect_to properties_url
+    @flat = Flat.find(params[:id]).destroy
+    redirect_to property_path(@flat.property_id)
   end
 
+  def show
+  end
+  
   private
 
-    def flats_params
-      params.require(:flat).permit(:content)  
+   
+    def flat_params
+    params.require(:flat).permit(:name, :content, :flat_nr, :caretaker, :join_date)
     end
+
+    def set_flat
+       @flat = Flat.find(params[:id])
+    end
+
   end

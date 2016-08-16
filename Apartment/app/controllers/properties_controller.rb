@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
+  
   before_action :find_property, only: [:show, :edit, :update, :destroy]
   # GET /properties
   # GET /properties.json
@@ -25,9 +25,7 @@ class PropertiesController < ApplicationController
      authorize! :update, @property
   end
 
-  def description
-    render ('properties/description')
-  end
+ 
 
   # POST /properties
   # POST /properties.json
@@ -77,9 +75,6 @@ class PropertiesController < ApplicationController
        @property = Property.find(params[:id])
     end
 
-    def set_property
-      @property = Property.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params

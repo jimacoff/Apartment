@@ -1,6 +1,7 @@
 <h1>Housing</h1>
 
-<div class="btn btn-default" style="margin-bottom:5%"><%= link_to 'New Property', new_property_path %></div>
+<div class="btn btn-default" style="margin-bottom:5%"><%= link_to 'New Property', new_property_path %>
+</div>
 <br>
 
 <% @properties.each do |property| %>
@@ -10,16 +11,7 @@
       <%= link_to (property_path(property)) do %>
         <h3 style="padding-left:1% "> <%= property.content %></h3> 
         <h4 style="padding-left:10%"> Owned by:  <%= property.user.name %></s> <%= property.user.surname %>  </h4> <% end -%>
-        
-     
-        </div>
-     
-
-
-      
-
-
-      
+      </div>  
     </div>
   </div>
 <% end %>
