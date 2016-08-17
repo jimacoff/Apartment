@@ -14,9 +14,16 @@ class Ability
         can :destroy, Property do |property|
             property.user == user
         end
+         can :update, Flat do |flat|
+            flat.user == user
+        end
+        can :destroy, Flat do |flat|
+            flat.user == user
+        end
 
 
         can :create, Property
+        can :create, Flat
   
     end
     # Define abilities for the passed in user here. For example:
