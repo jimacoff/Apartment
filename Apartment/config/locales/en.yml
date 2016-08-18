@@ -27,6 +27,7 @@ en:
         email: "E-mail address"
         flat_nr: "Apartment number"
         Join_date: "Move in date"
+        name: "Owners name"
       property:
         content: "Property name"
     errors:

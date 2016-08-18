@@ -18,11 +18,11 @@
   	<% end %>
 	<div class="row">
 		<div class="col-md-6 col-lg-6">
-			<%= f.label :Owners_Name%>
-			<%= f.text_field :name %>
+			<%= f.label 'Owners name *'%>
+			<%= f.text_field :name ,required: true%>
 			<br />
-			<%= f.label :Apartment_number%>
-			<%= f.text_field :flat_nr %>
+			<%= f.label 'Apartment number *'%>
+			<%= f.text_field :flat_nr,required: true %>
 			<br />
 		   	<%= f.label :Phone_number %>
 		   	<%= f.telephone_field :phone%>
@@ -36,10 +36,8 @@
 	   	</div>
 	    <div class="col-md-6 col-lg-6">
 	    
-		    <%= f.label :Move_in_date %>
-		    <i>(dd/mm/yyyy)</i>
-		    <br/>
-		    <%= f.date_field(:join_date, max: Date.today) %>
+		    <%= f.label 'Move in date *' %>
+		    <%= f.date_field(:join_date, max: Date.today,required: true,placeholder: "DD/MM/YYYY") %>
 		    <br />
 		    
 		   	<%= f.label :Relatives %>

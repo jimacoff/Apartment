@@ -9,10 +9,6 @@
     <h4>Property owned by: <%= @property.user.name %> </s> <%= @property.user.surname %></h4>
     
       <%= link_to "Property Documents", property_documents_path(@property),class: "btn btn-default" %>
-   
-
-
-
 
     <h2 style="margin-top:10%">Flats</h2>
     <%= link_to 'Add New flat', new_property_flat_path(@property),class: "btn btn-default" %> 

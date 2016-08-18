@@ -3,4 +3,6 @@ class Document < ActiveRecord::Base
    validates :name, presence: true # Make sure the owner's name is present.
    belongs_to :property
    belongs_to :user
+
+   validates_presence_of :attachment, :name
 end
