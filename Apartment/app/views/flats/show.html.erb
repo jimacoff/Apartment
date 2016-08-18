@@ -2,13 +2,23 @@
 	<div class="col-md-6 col-lg-6" style="border: 1px solid black">
 		<h2>Flat nr: <%= @flat.flat_nr %></h2>
 		<h2>Owner: <%= @flat.name %></h2>
+		<h2>Phone number: <%= @flat.phone %></h2>
+		<h2>Email: <%= @flat.email %></h2>
+		<h2>Room count: <%= @flat.rooms %></h2>
+		<h2>Move in date: <%= @flat.join_date.strftime("%d/%m/%Y") %>
+		<h2>Relatives: <%= @flat.relatives %></h2>
 		<h2>Caretaker: <%= @flat.caretaker %></h2>
+		<h2>More persons: <%= @flat.morepersons %></h2>
 		<h2>Description: <%= @flat.content %></h2>
-		<h2>Move in date: <%= @flat.join_date.strftime("%d/%m/%Y") %></h2>
+			 
+	   
+		</h2>
 	</div>
 </div>
 
 <h3>
+	<% if can? :update, @flat%>
 	<%= link_to 'Edit', edit_property_flat_path %> 
+	<% end %>
 </h3>
 <h3><%= link_to 'Back', property_path(@flat.property_id) %></h3>

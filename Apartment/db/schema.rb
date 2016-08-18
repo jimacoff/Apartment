@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816125452) do
+ActiveRecord::Schema.define(version: 20160817145654) do
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.integer  "property_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "flats", force: :cascade do |t|
     t.string   "content"
@@ -19,9 +27,14 @@ ActiveRecord::Schema.define(version: 20160816125452) do
     t.datetime "updated_at",  null: false
     t.integer  "property_id"
     t.string   "name"
-    t.integer  "flat_nr"
+    t.string   "flat_nr"
     t.datetime "join_date"
     t.string   "caretaker"
+    t.integer  "phone"
+    t.string   "relatives"
+    t.integer  "rooms"
+    t.string   "morepersons"
+    t.string   "email"
   end
 
   create_table "properties", force: :cascade do |t|
