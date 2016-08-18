@@ -3,9 +3,9 @@
 <%= render 'form', property: @property %>
 
 
-<div class="btn btn-danger">
+<div >
 <% if can? :update, @property%>
-          <%= link_to 'Delete', @property, method: :delete, data: { confirm: 'Are you sure?'}%>
+          <%= link_to 'Delete', @property, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger"%>
 <% end %>
 </div>
 <br />

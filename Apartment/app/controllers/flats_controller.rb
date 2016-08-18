@@ -4,20 +4,26 @@ class FlatsController < ApplicationController
   
   def new
     @property = Property.find(params[:property_id])
+    @flat = Flat.new
   end
 
   def create 
     @property = Property.find(params[:property_id])
     @flat = @property.flats.build(flat_params)
     @flat.user = current_user
-    @flat.save
+    
+    if @flat.save
+         redirect_to property_path(@property), notice: "Flat nr: #{@flat.flat_nr} has been added."
+      else
+        render "new" 
+      end
 
-    redirect_to property_path(@property)
+    
   end
 
   def destroy
     @flat = Flat.find(params[:id]).destroy
-    redirect_to property_path(@flat.property_id)
+    redirect_to property_path(@flat.property_id), notice: "Flat nr: #{@flat.flat_nr} has been deleted."
   end
 
   def show
@@ -29,7 +35,13 @@ class FlatsController < ApplicationController
 
   def update
     @flat.update(flat_params)
-    redirect_to property_path(@flat.property_id)
+    
+     if @flat.save
+         redirect_to property_path(@flat.property_id), notice: "Flat nr: #{@flat.flat_nr} has been changed."
+      else
+        
+        render "edit" 
+      end
   end
 
   private

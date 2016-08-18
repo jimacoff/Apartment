@@ -7,21 +7,29 @@
     <% end %>
     <h2><%= @property.content %></h2>
     <h4>Property owned by: <%= @property.user.name %> </s> <%= @property.user.surname %></h4>
-    <div class="btn btn-default" style="margin-bottom:5%">
-      <%= link_to "Property Documents", property_documents_path(@property) %>
-    </div>
+    
+      <%= link_to "Property Documents", property_documents_path(@property),class: "btn btn-default" %>
+   
 
 
 
 
     <h2 style="margin-top:10%">Flats</h2>
-    <div class="btn btn-default" style="margin-bottom:5%"><%= link_to 'Add New flat', new_property_flat_path(@property) %> </div>
+    <%= link_to 'Add New flat', new_property_flat_path(@property),class: "btn btn-default" %> 
     <% if @property.flats.any? %>   
+    <div class="row">
+    <div class="col-md-6 col-lg-6">
+    <h2>Flat Nr:</h2>
+    </div>
+    <div class="col-md-6 col-lg-6" style="padding-left:10%">
+      <h2>Owner</h2>
+    </div>
+    </div>
       <% @property.flats.each do |flat| %>        
         <%= link_to (property_flat_path(flat.property_id,flat)) do %>  
           <div style="border: 1px solid black"> 
-            <h3 class="pull-right" style="padding-right:10%">Owner: <%= flat.name %></h3>
-            <h3>Flat nr: <%= flat.flat_nr %></h3>
+            <h3 class="pull-right" style="padding-right:20%"><%= flat.name %></h3>
+            <h3><%= flat.flat_nr %></h3>
 
            
               <%= link_to 'Delete', property_flat_path(flat.property_id, flat), method: :delete %>

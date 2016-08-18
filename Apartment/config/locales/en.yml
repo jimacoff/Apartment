@@ -21,3 +21,17 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      flat:
+        email: "E-mail address"
+        flat_nr: "Apartment number"
+        Join_date: "Move in date"
+      property:
+        content: "Property name"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "is required"
