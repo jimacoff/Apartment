@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817145654) do
+ActiveRecord::Schema.define(version: 20160819124214) do
+
+  create_table "cpanels", force: :cascade do |t|
+    t.string   "Name"
+    t.integer  "User_id"
+    t.integer  "Property_id"
+    t.integer  "flat_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +51,8 @@ ActiveRecord::Schema.define(version: 20160817145654) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "address"
   end
 
   create_table "users", force: :cascade do |t|

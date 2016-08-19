@@ -10,11 +10,19 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :Property_name %><br />
+    <%= f.label :Property_owner %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :City %><br />
     <%= f.text_field :content %>
   </div>
+  <div class="field">
+    <%= f.label :Address %><br />
+    <%= f.text_field :address %>
+  </div>
+  
   
 
   <div class="actions">

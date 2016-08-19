@@ -5,8 +5,9 @@
     <% if can? :update, @property%>
       <h3 class="pull-right"><%= link_to 'Edit', edit_property_path(@property) %> </h3>
     <% end %>
-    <h2><%= @property.content %></h2>
-    <h4>Property owned by: <%= @property.user.name %> </s> <%= @property.user.surname %></h4>
+    <h2 >Address:  <%= @property.address %>  </h2>
+    <h2  >City: <%= @property.content %></h2>  
+    <h4>Property owned by: <%= @property.name %></h4>
     
       <%= link_to "Property Documents", property_documents_path(@property),class: "btn btn-default" %>
 
