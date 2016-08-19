@@ -1,8 +1,8 @@
 class DocumentsController < ApplicationController
    before_action :find_document, only: [:show, :edit, :update, :destroy]
-   before_action :find_property, only: [:index, :create, :new, :show, :edit, :update, :destroy]
+   before_action :find_property, only: [:index,:create, :new, :show, :edit, :update, :destroy]
    def index
-    @documents = Document.all
+    @documents = Document.where property_id: @property
 
    end
    
