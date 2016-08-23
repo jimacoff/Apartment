@@ -1,24 +1,56 @@
-<div class="row">
-	<div class="col-md-6 col-lg-6" style="border: 1px solid black">
-		<h2>Flat nr: <%= @flat.flat_nr %></h2>
-		<h2>Owner: <%= @flat.name %></h2>
-		<h2>Phone number: <%= @flat.phone %></h2>
-		<h2>Email: <%= @flat.email %></h2>
-		<h2>Room count: <%= @flat.rooms %></h2>
-		<h2>Move in date: <%= @flat.join_date.strftime("%d/%m/%Y") %>
-		<h2>Relatives: <%= @flat.relatives %></h2>
-		<h2>Caretaker: <%= @flat.caretaker %></h2>
-		<h2>More persons: <%= @flat.morepersons %></h2>
-		<h2>Description: <%= @flat.content %></h2>
-			 
-	   
-		</h2>
-	</div>
-</div>
-
-<h3>
-	<% if can? :update, @flat%>
-	<%= link_to 'Edit', edit_property_flat_path %> 
+<table class = "table table-bordered table-striped">
+  
+   <tbody>
+		
+         
+        <tr>
+        	<th>Flat Nr.</th>
+           	<td><%= @flat.flat_nr %></td>
+        </tr>
+        <tr>
+		    <th>Owner</th>
+			<td><%= @flat.name %></td>
+		</tr>
+		<tr>
+		    <th>Phone</th>
+			<td><%= @flat.phone %></td>
+		</tr>
+		<tr>
+		    <th>Email</th>
+			<td><%= @flat.email %></td>
+		</tr>
+		<tr>
+		    <th>Rooms</th>
+			<td><%= @flat.rooms %></td>
+		</tr>
+		<tr>
+		    <th>Move in date</th>
+			<td><%= @flat.join_date.try(:strftime, "%d/%m/%Y") %>
+		</tr>
+		<tr>
+		    <th>Relatives</th>
+			<td><%= @flat.relatives %></td>
+		</tr>
+		<tr>
+		    <th>Caretaker</th>
+			<td><%= @flat.caretaker %></td>
+		</tr>
+		<tr>
+		    <th>More Persons</th>
+			<td><%= @flat.morepersons %></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td><%= @flat.content %></td>
+		</tr>
+		
+  </tbody>
+  </table>
+  <% if can? :update, @flat%>
+	<%= link_to 'Edit', edit_property_flat_path, class: "btn btn-warning"  %> 
 	<% end %>
-</h3>
+	<% if can? :update, @flat%>
+	<%= link_to 'Delete', property_flat_path, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %> 
+	<% end %>
+<br />
 <h3><%= link_to 'Back', property_path(@flat.property_id) %></h3>

@@ -2,11 +2,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.admin?
-
-        can :manage, :all
-
-    else
+    user ||= User.new # guest user
+ 
+    if user.role_id == 8 #7 registered, 8 admin, 9 property owner, 10 flat owner, 11 support
+      can :manage, :all
+    
+    elsif user.role_id == 9
 
         can :update, Property do |property|
             property.user == user
@@ -24,7 +25,23 @@ class Ability
 
         can :create, Property
         can :create, Flat
-  
+
+    elsif user.role_id == 10
+
+         can :update, Flat do |flat|
+            flat.user == user
+        end
+        can :destroy, Flat do |flat|
+            flat.user == user
+        end
+
+        can :create, Flat
+
+    elsif user.role_id == 11
+
+        can :read, Property
+        can :read, Flat
+    else 
     end
     # Define abilities for the passed in user here. For example:
     #

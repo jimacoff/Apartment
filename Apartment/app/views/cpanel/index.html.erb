@@ -3,8 +3,10 @@
       <tr>
          <th>Name</th>
          <th>Surname</th>
-         <th>Admin </th>
-         <th>Posts</th>
+         <th>User Role </th>
+         <th>Properties</th>
+         <th>Flats</th>
+         <th>Edit</th>
          <th>Delete</th>
          
       </tr>
@@ -12,17 +14,40 @@
    <tbody>
 		<% @users.each do |user| %>
          
+        
          <tr>
             <td><%= user.name %></td>
             <td><%= user.surname %></td>
-            <td><%= user.admin%></td>
-            <td><%= link_to cpanel_posts_path(user) do %>
-            <%= user.properties.size %>
-            	<% end %>
+
+            <td>
+            
+              <%= user.role.try :name %>
+               </td>
+               
+
+               <td>
+                  <%= link_to cpanel_posts_path(user) do %>
+                     <%= user.properties.size %>
+                  <% end %>
+               </td>
+               <td>
+                  <%= link_to cpanel_postflats_path(user) do %>
+                     <%= user.flats.size %>
+                  <% end %>
+               </td>
+             <td> 
+                <%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning"%>
+              
             </td>
-            <td><%= link_to 'Delete User', cpanel_path(user), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %></td>
+            
+            <td><%= link_to 'Delete User', cpanel_path(user), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+            </td>
+            
+            
             
          </tr>
-         
+
       	<% end %>
   </tbody>
+  </table>
+           

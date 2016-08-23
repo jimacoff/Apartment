@@ -1,13 +1,31 @@
 class CpanelController < ApplicationController
-	 before_action :find_user, only: [:new, :show, :edit, :update, :destroy]
+	before_action :find_user, only: [:create,:show, :edit, :destroy]
   def index
 
+    authorize! :read, Cpanel
   	@users = User.all.includes(:properties)
-  	
+  
   end
 
   def edit
+    authorize! :update, @property
   end
+
+  def new
+   
+  end
+
+  def create 
+
+    @user.update_attributes(user_params)
+    
+    if @user.update
+         redirect_to cpanels_path
+      else
+        render "new" 
+      end 
+  end
+
 
   def destroy
   	@user.destroy
@@ -22,5 +40,9 @@ class CpanelController < ApplicationController
   
   def find_user
   	@user = User.find(params[:id])
+  end
+
+   def user_params
+    params.require(:user).permit(:name, :surname, :email, :location, :password, :admin)
   end
 end

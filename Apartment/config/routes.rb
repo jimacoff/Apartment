@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
  
-  
-
 
   root 'home#index'
 
@@ -11,8 +9,11 @@ Rails.application.routes.draw do
   end
   resources :cpanel do
     resources :posts
+    resources :postflats
   end
   
-  devise_for :users, :controllers => { registrations: 'registrations'}
+  devise_for :users,  :controllers => { :registrations => 'registrations'}
+  resources :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

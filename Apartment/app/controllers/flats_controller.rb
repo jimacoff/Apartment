@@ -8,6 +8,7 @@ class FlatsController < ApplicationController
   end
 
   def create 
+    authorize! :create, Flat
     @property = Property.find(params[:property_id])
     @flat = @property.flats.build(flat_params)
     @flat.user = current_user
@@ -27,6 +28,7 @@ class FlatsController < ApplicationController
   end
 
   def show
+     authorize! :read, Flat
   end
   
   def edit

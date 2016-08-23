@@ -1,7 +1,22 @@
-<% @user.properties.each do |property| %>
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Name</th>
+         <th>City</th>
+         <th>Address </th>
+         <th>Delete</th>
+         
+      </tr>
+   </thead>
+   <tbody>
+		<% @properties.each do |property| %>
          
          <tr>
             <td><%= property.name %></td>
-         </tr>
-         
+            <td><%= property.content %></td>
+            <td><%= property.address %></td>
+         <td><%= link_to 'Delete Property', cpanel_post_path(@user, property), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %></td>
+            
+         </tr>      
       	<% end %>
+  </tbody>

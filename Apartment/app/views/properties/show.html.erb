@@ -8,40 +8,63 @@
     <h2 >Address:  <%= @property.address %>  </h2>
     <h2  >City: <%= @property.content %></h2>  
     <h4>Property owned by: <%= @property.name %></h4>
-    
+    <% if can? :create, Flat%>
       <%= link_to "Property Documents", property_documents_path(@property),class: "btn btn-default" %>
+    <% end %>
 
     <h2 style="margin-top:10%">Flats</h2>
-    <%= link_to 'Add New flat', new_property_flat_path(@property),class: "btn btn-default" %> 
-    <% if @property.flats.any? %>   
-    <div class="row">
-    <div class="col-md-6 col-lg-6">
-    <h2>Flat Nr:</h2>
-    </div>
-    <div class="col-md-6 col-lg-6" style="padding-left:10%">
-      <h2>Owner</h2>
+    <% if can? :create, Flat %>
+      <%= link_to 'Add New flat', new_property_flat_path(@property),class: "btn btn-default" %>
+    <% end %> 
+    <% if @property.flats.any? %> 
     </div>
     </div>
-      <% @property.flats.each do |flat| %>        
-        <%= link_to (property_flat_path(flat.property_id,flat)) do %>  
-          <div style="border: 1px solid black"> 
-            <h3 class="pull-right" style="padding-right:20%"><%= flat.name %></h3>
-            <h3><%= flat.flat_nr %></h3>
-
+    <br />
+    <table class = "table table-bordered table-striped">
+      <thead>
+        <tr>
            
-              <%= link_to 'Delete', property_flat_path(flat.property_id, flat), method: :delete %>
-            
+           <th>Flat Nr.</th>
+           <th>Owner</th>
+           <% if can? :read, Flat%>
+           <th>Content</th>
+           <% end %>
+           <% if can? :update, @flat%>
+            <th>Edit</th>
+           <% end %>
+           <% if can? :destroy, @flat%>
+           <th>Delete</th>
+           <% end %>
+           
+        </tr>
+      </thead>
+      <tbody>
+        <% @property.flats.each do |flat| %>   
+             
+          <tr>
 
+            <td><%= flat.flat_nr %></td>
+            <td><%= flat.name %></td>
+            <% if can? :read, Flat%>
+              <td>
+                <%= link_to 'Show', property_flat_path(flat.property_id,flat),class: "btn btn-success" %>    
+              </td>
+            <% end %>
             <% if can? :update, @flat%>
-              <%= link_to 'Edit', edit_property_flat_path(flat.property_id,flat) %>
-            <% end %>   
-
-            <br />
-          </div>
-        <% end %>     
+              <td> 
+                  <%= link_to 'Edit', edit_property_flat_path(flat.property_id,flat), class: "btn btn-warning"%>   
+              </td>
+            <% end %>
+            <% if can? :destroy, @flat%>
+            <td>
+              <%= link_to 'Delete', property_flat_path(flat.property_id, flat), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+            </td>
+            <% end %>
+          </tr>      
+        <% end %>
+      </tbody>  
+      </table>
       <% end %>
-    <% end %>
-  </div>
-</div>
+
 <br />
 <h3><%= link_to 'Back', properties_path %></h3>
