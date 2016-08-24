@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
- 
+
+  get 'tickets/complain'
+  get 'tickets/maintenance'
+  get 'tickets/other'
 
   root 'home#index'
 
@@ -12,6 +15,10 @@ Rails.application.routes.draw do
     resources :postflats
   end
   
+  resources :tickets do
+    resources :replies
+  end
+
   devise_for :users,  :controllers => { :registrations => 'registrations'}
   resources :users
 

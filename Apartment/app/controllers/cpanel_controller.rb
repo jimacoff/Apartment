@@ -3,7 +3,7 @@ class CpanelController < ApplicationController
   def index
 
     authorize! :read, Cpanel
-  	@users = User.all.includes(:properties)
+  	@users = User.all.includes(:properties,:flats,:role)
   
   end
 

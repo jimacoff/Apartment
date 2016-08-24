@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p> 
+<h1>Tickets</h1>
+<div style="padding-bottom:2%;">
+<%= link_to 'All', tickets_path, class: "btn btn-default" %>
+<%= link_to 'Complains', tickets_complain_path, class: "btn btn-default" %>
+<%= link_to 'Maintenance', tickets_maintenance_path, class: "btn btn-default" %>
+<%= link_to 'Other', tickets_other_path, class: "btn btn-default" %>
+</div>
+
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Address</th>
+         <th>Flat Nr.</th>
+         <th>Name</th>
+         <th>Section</th>
+         <th>Show</th>
+         <% if can? :update, @ticket%>
+         <th>Delete</th>
+         <% end %>
+         
+      </tr>
+   </thead>
+   <tbody>
+	   <% @tickets.each do |ticket| %>
+		<tr>
+		    <td><%= ticket.address %></td>
+		    <td><%= ticket.flat_nr %></td>
+		    <td><%= ticket.name %></td>
+		    <td><%= ticket.selection %></td>
+		    <% if can? :read, Ticket%>
+		    <td><%= link_to 'Show', ticket_path(ticket), class: "btn btn-success" %></td>
+		    <% end %>
+		    <% if can? :update, @property%>
+		    <td><%= link_to 'Delete', ticket_path(ticket), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+		    </td>
+		    <% end %>
+		</tr>      
+	  <% end %>
+  </tbody>
+</table>
+  
+

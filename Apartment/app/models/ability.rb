@@ -22,7 +22,19 @@ class Ability
             flat.user == user
         end
 
+        can :update, Ticket do |ticket|
+            ticket.user == user
+        end
+        can :destroy, Ticket do |ticket|
+            ticket.user == user
+        end
 
+        
+        can :read, Property
+        can :read, Flat
+        
+
+        can :create, Ticket
         can :create, Property
         can :create, Flat
 
@@ -34,14 +46,33 @@ class Ability
         can :destroy, Flat do |flat|
             flat.user == user
         end
+         can :update, Ticket do |ticket|
+            ticket.user == user
+        end
+        can :destroy, Ticket do |ticket|
+            ticket.user == user
+        end
 
+        can :read, Property
+        can :read, Flat
+    
+
+        can :create, Ticket
+        can :create, Property
         can :create, Flat
 
     elsif user.role_id == 11
 
+        can :destroy, Ticket
+        can :update, Ticket
+        can :read, Ticket
         can :read, Property
         can :read, Flat
+        
     else 
+        can :read, Ticket
+        can :read, Property
+        can :read, Flat
     end
     # Define abilities for the passed in user here. For example:
     #

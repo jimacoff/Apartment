@@ -1,0 +1,53 @@
+<div class="row">
+<table class = "table table-bordered table-striped">
+   <tbody>	
+        <tr>
+        	<th>Address</th>
+           	<td><%= @ticket.address %></td>
+        </tr>
+        <tr>
+		    <th>Name</th>
+			<td><%= @ticket.name %></td>
+		</tr>
+		<tr>
+		    <th>Phone</th>
+			<td><%= @ticket.phone %></td>
+		</tr>
+		<tr>
+		    <th>Email</th>
+			<td><%= @ticket.email %></td>
+		</tr>
+		<tr>
+		    <th>Subject</th>
+			<td><%= @ticket.subject %></td>
+		</tr>
+		<tr>
+		    <th>Content</th>
+			<td><%= @ticket.content %>
+		</tr>
+		<tr>
+		    <th>Section</th>
+			<td><%= @ticket.selection %></td>
+		</tr>
+  </tbody>
+  </table>
+  <% if can? :update, @ticket%>
+	<%= link_to 'Edit', edit_ticket_path, class: "btn btn-warning"  %> 
+	<% end %>
+	<% if can? :update, @ticket%>
+	<%= link_to 'Delete', ticket_path, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %> 
+	<% end %>
+<br />
+<br />
+   	<div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+      <h4>Comments</h4>
+      <%= render @ticket.replies %>	   
+	   <% if can? :update, @ticket%>
+	        <%= form_for ([@ticket, @ticket.replies.build]) do |f| %>
+	          <div ><%= f.text_area :content, cols: "78", rows: "3"%><br/>
+	          <%= submit_tag "Submit",class: "btn btn-info" %></div>
+	        <% end %> 
+		<% end %>
+	</div>
+ </div> 
+<h3><%= link_to 'Back', tickets_path %></h3>

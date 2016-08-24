@@ -9,23 +9,29 @@
   </head>
 
   <body>
-  <div class="navbar navbar-default">
-  <ul class="nav navbar-nav">
+  
     <% if user_signed_in? %>
-    <li class="navbar-text navbar-right"><h4>Signed in as <%= current_user.name %></s> <%= current_user.surname %></h4></li>
+    <h4>Signed in as <%= current_user.name %>&nbsp <%= current_user.surname %> &nbsp(<%= current_user.role.name%>)</h4>
     
-    	
-    	<li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-    	
-    	<li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+    
+    <div class="navbar navbar-default">
+      <ul class="nav navbar-nav">
       <% if can? :read, Cpanel%>
       <li><%= link_to 'Control Panel',cpanel_index_path %></li>
       <% end %>
+      <li><%= link_to 'Submit Ticket',new_ticket_path %></li>
+      <% if can? :update, Ticket %>
+      <li><%= link_to 'Tickets',tickets_path %></li>
+      <% end %>
       <li><%= link_to 'Properties',properties_path %></li>
-      
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+
+      <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %>  </li> </ul>
+    </div>
   	<% end %>
-  </ul>
-  </div>
+  
 
     <%= yield %>
   </body>

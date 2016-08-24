@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p> 
 <h1>Properties</h1>
-<% if can? :update, @property%>
+<% if can? :create, Property%>
 <div style="margin-bottom:5%"><%= link_to 'New Property', new_property_path, class: "btn btn-default" %>
 </div>
 <% end %>
@@ -14,7 +14,7 @@
          <% if can? :read, Property%>
          <th>Flats</th>
          <% end %>
-         <% if can? :update, @property%>
+         <% if can? :update, Property%>
          <th>Delete</th>
          <% end %>
          
@@ -31,7 +31,7 @@
             <% if can? :read, Property%>
             <td><%= link_to 'Show', property_path(property),class: "btn btn-success" %></td>
             <% end %>
-            <% if can? :update, @property%>
+            <% if can? :update, property%>
             <td><%= link_to 'Delete', property_path(property), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
             </td>
             <% end %>
