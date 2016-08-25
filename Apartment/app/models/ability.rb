@@ -63,11 +63,10 @@ class Ability
 
     elsif user.role_id == 11
 
-        can :destroy, Ticket
-        can :update, Ticket
-        can :read, Ticket
-        can :read, Property
-        can :read, Flat
+        can :manage, Property
+        can :manage, Flat
+        can :manage, Ticket
+        can :manage, Reply
         
     else 
         can :read, Ticket

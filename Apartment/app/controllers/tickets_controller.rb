@@ -1,7 +1,10 @@
 class TicketsController < ApplicationController
-  
+  before_action :find_ticket, only: [ :flop,:show, :edit, :update, :destroy]
+
   def index
-  	@tickets = Ticket.all.order(:address)
+    @user = current_user
+  	@tickets = Ticket.all.order(@user.orderby) 
+   
   end
 
   def complain
@@ -23,8 +26,7 @@ class TicketsController < ApplicationController
   	@ticket = Ticket.new
   end
 
-  def show
-  	@ticket = Ticket.find(params[:id])
+  def show	
   end
 
   def create
@@ -40,15 +42,41 @@ class TicketsController < ApplicationController
   end
 
   def update
+     @ticket.update(ticket_params)
     
+     if @ticket.save
+        redirect_to ticket_path(@ticket)
+     else
+        render "edit" 
+     end
   end
   def destroy
-  	@ticket = Ticket.find(params[:id]).destroy
+    @replies = Reply.where ticket_id: @ticket
+    @replies.destroy_all
+    @ticket.destroy
     redirect_to tickets_path
   end
 
+  def flop 
+    @ticket.status = !@ticket.status # flop the status
+    @ticket.save
+    redirect_to ticket_path(@ticket)
+  end
+
+  def order
+    @user = current_user
+    @user.orderby = "created_at desc" # flop the status
+    @user.save
+    redirect_to tickets_path(@ticket)
+  end
+
+   
+
   private
   def ticket_params
-    params.require(:ticket).permit(:content, :surname, :name, :address, :flat_nr, :phone, :selection)
+    params.require(:ticket).permit(:content, :surname, :name, :address, :flat_nr, :phone, :selection, :subject, :status)
+  end
+  def find_ticket
+    @ticket = Ticket.find(params[:id])  
   end
 end

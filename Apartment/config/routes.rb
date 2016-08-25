@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'tickets/complain'
   get 'tickets/maintenance'
   get 'tickets/other'
+  get 'tickets/order'
 
   root 'home#index'
 
@@ -16,7 +17,11 @@ Rails.application.routes.draw do
   end
   
   resources :tickets do
+
     resources :replies
+    member do 
+      get :flop
+    end
   end
 
   devise_for :users,  :controllers => { :registrations => 'registrations'}

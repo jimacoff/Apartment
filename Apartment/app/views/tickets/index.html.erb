@@ -13,6 +13,7 @@
 
    <thead>
       <tr>
+      	 <th>Date</th>
          <th>Address</th>
          <th>Flat Nr.</th>
          <th>Name</th>
@@ -31,6 +32,7 @@
 	   <% @tickets.each do |ticket| %>
 	   <% if can? :update, ticket %>
 		<tr>
+			<td><%= ticket.created_at.try(:strftime, "%d/%m/%Y")  %>&nbsp <%= ticket.created_at.try(:strftime, "%H:%M")%></td>
 		    <td><%= ticket.address %></td>
 		    <td><%= ticket.flat_nr %></td>
 		    <td><%= ticket.name %></td>
@@ -44,10 +46,19 @@
 		    <% end %>
 		</tr>      
 		 <% end %>
+
 	  <% end %>
 	 
   </tbody>
 
 </table>
+		
 <% end %>
 
+<% if @user.orderby == "address" %>
+	<h1>test</h1>
+<% end %>
+
+	<%= link_to "Order by date desc", tickets_order_path, class: "btn btn-success"%> 
+
+	
