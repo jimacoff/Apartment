@@ -1,5 +1,5 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  before_action :set_flat, only: [ :edit, :update, :destroy]
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   
   def new
@@ -29,6 +29,8 @@ class FlatsController < ApplicationController
 
   def show
      authorize! :read, Flat
+    @flat = Flat.find(params[:id])
+
   end
   
   def edit

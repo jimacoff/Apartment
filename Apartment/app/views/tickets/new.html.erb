@@ -19,19 +19,23 @@
 	<div class="row">
 		<div class="col-md-6 col-lg-6">
 			<%= f.label 'Property address *'%>
-			<%= f.text_field :address ,required: true%>
+			<%= f.text_field :address ,required: true, :value => @property.try(:address) %>
+			
 			<br />
 			<%= f.label 'Apartment number *'%>
-			<%= f.text_field :flat_nr,required: true %>
+			<%= f.text_field :flat_nr,required: true, :value => @flat.try(:flat_nr) %>
 			<br />
 		   	<%= f.label 'Name *' %>
-		   	<%= f.text_field :name, required: true %>
+		   	<%= f.text_field :name, required: true, :value => @user.try(:name)%>
+		   	<br />
+		   	<%= f.label 'Surname *' %>
+		   	<%= f.text_field :surname, required: true, :value => @user.try(:surname)%>
 		   	<br />
 		   	<%= f.label :Phone %>
-		   	<%= f.telephone_field :phone%>
+		   	<%= f.telephone_field :phone, :value => @flat.try(:phone)%>
 		   	<br />
 		   	<%= f.label :Email %>
-		   	<%= f.email_field :email%>
+		   	<%= f.email_field :email, :value => @user.try(:email)%>
 		   	<br />
 		   	<%= f.label 'Subject *' %>
 		   	<%= f.text_field :subject, required: true %>

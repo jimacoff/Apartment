@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :properties do
-  	resources :flats
+  	resources :flats do
+      resources :tickets, only: [:new, :create]
+    end
     resources :documents, only: [:index, :new, :create, :destroy]
   end
   resources :cpanel do

@@ -13,10 +13,12 @@
 
    <thead>
       <tr>
+      	 <th>Date</th>
          <th>Address</th>
          <th>Flat Nr.</th>
          <th>Name</th>
          <th>Section</th>
+         <th>Status</th>
          <% if can? :update, Ticket%>
          	<th>Show</th>
          <% end %>
@@ -31,10 +33,19 @@
 	   <% @tickets.each do |ticket| %>
 	   <% if can? :update, ticket %>
 		<tr>
+			<td><%= ticket.created_at.try(:strftime, "%d/%m/%Y")  %>&nbsp <%= ticket.created_at.try(:strftime, "%H:%M")%></td>
 		    <td><%= ticket.address %></td>
 		    <td><%= ticket.flat_nr %></td>
-		    <td><%= ticket.name %></td>
+		    <td><%= ticket.name %>&nbsp<%= ticket.surname %></td>
 		    <td><%= ticket.selection %></td>
+		   
+		    <td>
+		    <%if ticket.status == false %>
+		    	<b>Open</b>
+		    <% else %>
+		    	<b>Closed</b>
+		    <% end %>
+		    </td>
 		    <% if can? :update, ticket%>
 		    <td><%= link_to 'Show', ticket_path(ticket), class: "btn btn-success" %></td>
 		    <% end %>
@@ -44,10 +55,12 @@
 		    <% end %>
 		</tr>      
 		 <% end %>
+
 	  <% end %>
 	 
   </tbody>
 
 </table>
+		
 <% end %>
 

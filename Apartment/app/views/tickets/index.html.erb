@@ -18,6 +18,7 @@
          <th>Flat Nr.</th>
          <th>Name</th>
          <th>Section</th>
+         <th>Status</th>
          <% if can? :update, Ticket%>
          	<th>Show</th>
          <% end %>
@@ -35,8 +36,16 @@
 			<td><%= ticket.created_at.try(:strftime, "%d/%m/%Y")  %>&nbsp <%= ticket.created_at.try(:strftime, "%H:%M")%></td>
 		    <td><%= ticket.address %></td>
 		    <td><%= ticket.flat_nr %></td>
-		    <td><%= ticket.name %></td>
+		    <td><%= ticket.name %>&nbsp<%= ticket.surname %></td>
 		    <td><%= ticket.selection %></td>
+		   
+		    <td>
+		    <%if ticket.status == false %>
+		    	<b>Open</b>
+		    <% else %>
+		    	<b>Closed</b>
+		    <% end %>
+		    </td>
 		    <% if can? :update, ticket%>
 		    <td><%= link_to 'Show', ticket_path(ticket), class: "btn btn-success" %></td>
 		    <% end %>
@@ -56,9 +65,9 @@
 <% end %>
 
 <% if @user.orderby == "address" %>
-	<h1>test</h1>
+	<h1></h1>
 <% end %>
 
-	<%= link_to "Order by date desc", tickets_order_path, class: "btn btn-success"%> 
+<!--	<%= link_to "Order by date desc", tickets_order_path, class: "btn btn-success"%>  -->
 
 	

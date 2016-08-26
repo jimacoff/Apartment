@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825105310) do
+ActiveRecord::Schema.define(version: 20160826111005) do
 
   create_table "cpanels", force: :cascade do |t|
     t.string   "Name"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160825105310) do
     t.integer  "phone"
     t.string   "email"
     t.string   "selection"
-    t.integer  "flat_nr"
+    t.string   "flat_nr"
     t.integer  "user_id"
     t.string   "content"
     t.string   "subject"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160825105310) do
     t.datetime "updated_at",                 null: false
     t.integer  "reply_id"
     t.boolean  "status",     default: false
+    t.string   "surname"
   end
 
   create_table "users", force: :cascade do |t|

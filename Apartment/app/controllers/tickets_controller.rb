@@ -3,7 +3,9 @@ class TicketsController < ApplicationController
 
   def index
     @user = current_user
-  	@tickets = Ticket.all.order(@user.orderby) 
+    @orderby = "created_at desc"
+  	@tickets = Ticket.all.order(@orderby) 
+    #@replies = Reply.find(params[:ticket_id])
    
   end
 
@@ -23,10 +25,24 @@ class TicketsController < ApplicationController
   end
 
   def new
-  	@ticket = Ticket.new
+  	
+    if @flat = Flat.find_by_id(params[:flat_id]) == nil
+    
+      
+      @ticket = Ticket.new
+   
+    else
+      @user = current_user
+      @flat = Flat.find(params[:flat_id])
+      @property = Property.find(params[:property_id])
+      @ticket = Ticket.new
+   
+    end
   end
 
   def show	
+    @flat = Flat.find_by(params[:flat_id]) 
+   
   end
 
   def create
@@ -65,7 +81,7 @@ class TicketsController < ApplicationController
 
   def order
     @user = current_user
-    @user.orderby = "created_at desc" # flop the status
+    @user.orderby = "created_at asc" # flop the status
     @user.save
     redirect_to tickets_path(@ticket)
   end
