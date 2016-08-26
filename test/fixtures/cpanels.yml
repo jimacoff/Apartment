@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Name: MyString
+  User_id: 1
+  Property_id: 1
+  flat_id: 1
+
+two:
+  Name: MyString
+  User_id: 1
+  Property_id: 1
+  flat_id: 1
