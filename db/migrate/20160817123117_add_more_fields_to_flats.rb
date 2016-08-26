@@ -2,7 +2,6 @@ class AddMoreFieldsToFlats < ActiveRecord::Migration[5.0]
   def change
     change_column :flats, :flat_nr, :string
     add_column :flats, :phone, :integer
-    change_column :flats, :join_date, :datetime, :default => "Not specified"
     add_column :flats, :relatives, :string
     add_column :flats, :rooms, :integer
     add_column :flats, :morepersons, :string
