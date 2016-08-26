@@ -4,10 +4,10 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
  
-    if user.role_id == 8 #7 registered, 8 admin, 9 property owner, 10 flat owner, 11 support
+    if user.role.name == "admin" #7 registered, 8 admin, 9 property owner, 10 flat owner, 11 support
       can :manage, :all
     
-    elsif user.role_id == 9
+    elsif user.role.name == "property owner"
 
         can :update, Property do |property|
             property.user == user
@@ -38,7 +38,7 @@ class Ability
         can :create, Property
         can :create, Flat
 
-    elsif user.role_id == 10
+    elsif user.role.name == "flat owner"
 
          can :update, Flat do |flat|
             flat.user == user
@@ -61,7 +61,7 @@ class Ability
         can :create, Property
         can :create, Flat
 
-    elsif user.role_id == 11
+    elsif user.role.name == "support"
 
         can :manage, Property
         can :manage, Flat
