@@ -1,0 +1,59 @@
+<table class = "table table-bordered table-striped">
+  
+   <tbody>
+		
+         
+        <tr>
+        	<th>Flat Nr.</th>
+           	<td><%= @flat.flat_nr %></td>
+        </tr>
+        <tr>
+		    <th>Owner</th>
+			<td><%= @flat.name %></td>
+		</tr>
+		<tr>
+		    <th>Phone</th>
+			<td><%= @flat.phone %></td>
+		</tr>
+		<tr>
+		    <th>Email</th>
+			<td><%= @flat.email %></td>
+		</tr>
+		<tr>
+		    <th>Rooms</th>
+			<td><%= @flat.rooms %></td>
+		</tr>
+		<tr>
+		    <th>Move in date</th>
+			<td><%= @flat.join_date.try(:strftime, "%d/%m/%Y") %>
+		</tr>
+		<tr>
+		    <th>Relatives</th>
+			<td><%= @flat.relatives %></td>
+		</tr>
+		<tr>
+		    <th>Caretaker</th>
+			<td><%= @flat.caretaker %></td>
+		</tr>
+		<tr>
+		    <th>More Persons</th>
+			<td><%= @flat.morepersons %></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td><%= @flat.content %></td>
+		</tr>
+		
+  </tbody>
+  </table>
+  <% if can? :update, @flat%>
+		<%= link_to 'Edit', edit_property_flat_path, class: "btn btn-warning"  %> 
+	<% end %>
+	<% if can? :update, @flat%>
+		<%= link_to 'Delete', property_flat_path, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %> 
+	<% end %>
+	<% if can? :update, Ticket %>
+      <%= link_to 'Submit ticket',new_property_flat_ticket_path(@flat.property_id, @flat),class: "btn btn-info" %>
+    <% end %>
+<br />
+<h3><%= link_to 'Back', property_path(@flat.property_id) %></h3>
