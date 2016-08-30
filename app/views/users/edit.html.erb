@@ -19,7 +19,7 @@
 		        <%= f.text_field :location, autofocus: true %></div><br/><br/>
 		    <div><%= f.label :User_Role %>
 			    <%= f.select(:role_id) do %>
-			       <% [['Registered', 7],['Admin', 8], ['Property Owner', 9],['Flat Owner', 10],['Support', 11]].each do |c| %>
+			       <% [['Registered', 1],['Admin', 2], ['Property Owner', 3],['Flat Owner', 4],['Support', 5]].each do |c| %>
 			          <%= content_tag(:option, c.first, value: c.last) %>
 			       <% end %>
 			    <% end %>              
