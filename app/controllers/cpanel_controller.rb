@@ -1,9 +1,9 @@
 class CpanelController < ApplicationController
 	before_action :find_user, only: [:create,:show, :edit, :destroy]
   def index
-
+    @orderby = "LOWER(name) asc"
     authorize! :read, Cpanel
-  	@users = User.all.includes(:properties,:flats,:role)
+  	@users = User.all.includes(:properties,:flats,:role).order(@orderby)
   
   end
 

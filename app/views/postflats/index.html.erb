@@ -1,6 +1,7 @@
 <table class = "table table-bordered table-striped">
    <thead>
       <tr>
+       
          <th>Property id</th>
          <th>Flat Nr.</th>
          <th>Owner</th>
@@ -12,9 +13,11 @@
       </tr>
    </thead>
    <tbody>
+   
 		<% @flats.each do |flat| %>
          
-      <tr>
+      <tr>  
+         
             <td><%= flat.property_id %></td>
             <td><%= flat.flat_nr %></td>
             <td><%= flat.name %></td>
@@ -26,5 +29,6 @@
             
          </tr>      
       	<% end %>
+         
   </tbody>
   </table>

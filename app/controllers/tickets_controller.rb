@@ -25,7 +25,7 @@ class TicketsController < ApplicationController
   end
 
   def new
-  	
+  
     if @flat = Flat.find_by_id(params[:flat_id]) == nil
     
       

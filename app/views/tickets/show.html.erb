@@ -13,6 +13,10 @@
            	<td><%= @ticket.address %></td>
         </tr>
         <tr>
+		    <th>Flat Nr.</th>
+			<td><%= @ticket.flat_nr %></td>
+		</tr>
+        <tr>
 		    <th>Name</th>
 			<td><%= @ticket.name %></td>
 		</tr>
@@ -22,7 +26,7 @@
 		</tr>
 		<tr>
 		    <th>Email</th>
-			<td><%= @ticket.email %></td>
+			<td><%= @ticket.user.email %></td>
 		</tr>
 		<tr>
 		    <th>Subject</th>

@@ -15,8 +15,7 @@
 		        <%= f.text_field :surname, autofocus: true %></div>
 		    <div><%= f.label :email %>
 		        <%= f.email_field :email %></div>
-		    <div><%= f.label :address %>
-		        <%= f.text_field :location, autofocus: true %></div><br/><br/>
+		    <br/><br/>
 		    <div><%= f.label :User_Role %>
 			    <%= f.select(:role_id) do %>
 			       <% [['Registered', 1],['Admin', 2], ['Property Owner', 3],['Flat Owner', 4],['Support', 5]].each do |c| %>

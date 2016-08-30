@@ -28,6 +28,12 @@ class Ability
         can :destroy, Ticket do |ticket|
             ticket.user == user
         end
+        can :update, Reply do |reply|
+            reply.user == user
+        end
+        can :destroy, Reply do |reply|
+            reply.user == user
+        end
 
         
         can :read, Property
@@ -51,6 +57,12 @@ class Ability
         end
         can :destroy, Ticket do |ticket|
             ticket.user == user
+        end
+        can :update, Reply do |reply|
+            reply.user == user
+        end
+        can :destroy, Reply do |reply|
+            reply.user == user
         end
 
         can :read, Property

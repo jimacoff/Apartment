@@ -8,7 +8,7 @@
 
 <div style="margin-bottom:3%; ">
 <% if @ticket.status == false %>  
-	<% if can? :update, @ticket%>
+	<% if can? :update, reply%>
 		<%= link_to 'Edit', edit_ticket_reply_path(reply.ticket_id, reply)  %> 
 	<% end %>
 	<% if can? :destroy, reply%>
