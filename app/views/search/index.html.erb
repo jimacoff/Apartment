@@ -1,0 +1,91 @@
+<div style="margin-bottom:5%">
+   <%= form_tag search_index_path, :method => 'get' do%>
+      <%= text_field_tag :search, params[:search], required: true %>
+      <%= submit_tag "Search"%>
+   <% end %>
+</div>
+<% unless @properties.any? || @flats.any? %>
+<h3>No records found for <%= params[:search] %></h3>
+<% end %>
+<% if @properties.any? %>
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         
+         <th>Owner.</th>
+         <th>Address</th>
+         <th>City</th>
+         <% if can? :read, Property%>
+         <th>Flats</th>
+         <% end %>
+         <% if can? :update, Property%>
+         <th>Delete</th>
+         <% end %>
+         
+      </tr>
+   </thead>
+   <tbody>
+   <% @properties.each do |property| %>
+         
+         <tr>
+
+            <td><%= property.name %></td>
+            <td><%= property.address %></td>
+            <td><%= property.content %></td>
+            <% if can? :read, Property%>
+            <td><%= link_to 'Show', property_path(property),class: "btn btn-success" %></td>
+            <% end %>
+            <% if can? :update, property%>
+            <td><%= link_to 'Delete', property_path(property), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+            </td>
+            <% end %>
+         </tr>      
+        <% end %>
+  </tbody>
+  </table>
+  <% end %>
+  <% if @flats.any? %>
+     <table class = "table table-bordered table-striped">
+       <thead>
+         <tr>   
+            <th>Flat Nr.</th>
+            <th>Owner</th>
+            <% if can? :read, Flat%>
+            <th>Content</th>
+            <% end %>
+            <% if can? :update, Flat%>
+             <th>Edit</th>
+            <% end %>
+            <% if can? :destroy, Flat%>
+            <th>Delete</th>
+            <% end %>
+            
+         </tr>
+       </thead>
+       <tbody>
+         <% @flats.each do |flat| %>   
+              
+           <tr>
+
+             <td><%= flat.flat_nr %></td>
+             <td><%= flat.name %></td>
+             <% if can? :read, Flat%>
+               <td>
+                 <%= link_to 'Show', property_flat_path(flat.property_id,flat),class: "btn btn-success" %>    
+               </td>
+             <% end %>
+             <% if can? :update, flat%>
+               <td> 
+                   <%= link_to 'Edit', edit_property_flat_path(flat.property_id,flat), class: "btn btn-warning"%>   
+               </td>
+             <% end %>
+             <% if can? :destroy, flat%>
+             <td>
+               <%= link_to 'Delete', property_flat_path(flat.property_id, flat), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+             </td>
+             <% end %>
+           </tr>      
+         <% end %>
+       </tbody>  
+     </table>
+  <% end %>

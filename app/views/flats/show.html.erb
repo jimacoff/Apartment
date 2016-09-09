@@ -1,3 +1,8 @@
+
+<h2 >Address:  <%= @property.address %>  </h2>
+<h3  >City: <%= @property.content %></h3>  
+<h4>Property owned by: <%= @property.name %></h4>
+
 <table class = "table table-bordered table-striped">
   
    <tbody>
@@ -56,4 +61,63 @@
       <%= link_to 'Submit ticket',new_property_flat_ticket_path(@flat.property_id, @flat),class: "btn btn-info" %>
     <% end %>
 <br />
+<br />
+<h2>Last owner history</h2>
+
+
+  <br />
+
+  <table class = "table table-bordered table-striped">
+    <thead>
+      <tr>   
+         <th>Name</th>
+         <th>Email</th>
+         <th>Move in Date</th>
+         <th>Move out Date</th>               
+         <th>Delete</th>               
+      </tr>
+    </thead>
+    <tbody>
+      <% @flat.ownerhistories.each do |ownerhistory| %>             
+        <tr>
+          <td><%= ownerhistory.name %></td>
+          <td><%= ownerhistory.email %></td>
+          <td><%= ownerhistory.move_in_date.try(:strftime, "%d/%m/%Y") %></td>
+          <td><%= ownerhistory.move_out_date.try(:strftime, "%d/%m/%Y") %></td>
+          <td>
+            <%= link_to 'Delete', property_flat_ownerhistory_path(@property,ownerhistory.flat_id, ownerhistory), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+          </td>   
+        </tr>      
+      <% end %>
+    </tbody>  
+  </table>
+<br />
+<%= form_for ([@property, @flat, @flat.ownerhistories.build()]) do |f| %>
+	<table class = "table table-bordered table-striped">
+	    <thead>
+	      <tr>   
+	         <th>Name</th>
+	         <th>Email</th>
+	         <th>Move in date</th>    
+	         <th>Move out date</th>  
+	      </tr>
+	    </thead>
+	    <tbody>  
+
+	        <tr>
+	         
+		          <td><%= f.text_field :name ,required: true, :value => @flat.try(:name) %></td>
+		          <td><%= f.email_field :email ,required: true, :value => @flat.try(:email) %></td>
+		          <td><%= f.date_field :move_in_date ,required: true, :value => @flat.try(:join_date).try(:strftime, "%d/%m/%Y") %></td>
+		          <td><%= f.date_field :move_out_date, required: true, :value => Date.today.try(:strftime, "%d/%m/%Y") %></td>  
+
+	        </tr>  
+	              
+	    </tbody>  
+	</table>
+	<div class="row">
+	<%= submit_tag "Save Current Owner",class: "btn btn-info",data: {confirm: "Are you sure?"} %>    
+<% end %> 
+
+  <br />
 <h3><%= link_to 'Back', property_path(@flat.property_id) %></h3>

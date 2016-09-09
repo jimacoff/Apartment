@@ -5,6 +5,7 @@ class User < ApplicationRecord
 	has_many :documents
 	has_many :tickets
 	has_many :replies
+	has_many :ownerhistories
 	belongs_to :cpanel
    	belongs_to :role
   	before_create :set_default_role

@@ -1,13 +1,14 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [ :edit, :update, :destroy]
+  before_action :set_flat, only: [ :show, :edit, :update, :destroy]
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-  
+ 
   def new
     @property = Property.find(params[:property_id])
     @flat = Flat.new
   end
 
   def create 
+
     authorize! :create, Flat
     @property = Property.find(params[:property_id])
     @flat = @property.flats.build(flat_params)
@@ -28,9 +29,9 @@ class FlatsController < ApplicationController
   end
 
   def show
-     authorize! :read, Flat
-    @flat = Flat.find(params[:id])
-
+    authorize! :read, Flat
+    
+   
   end
   
   def edit
@@ -62,5 +63,10 @@ class FlatsController < ApplicationController
     def set_property
       @property = Property.find(params[:property_id])
     end
+
+    def set_ownerhistory
+      @ownerhistories = Ownerhistory.find(params[:ownerhistory_id])
+    end
+     
 
   end

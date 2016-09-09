@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826111005) do
+ActiveRecord::Schema.define(version: 20160907133042) do
 
   create_table "cpanels", force: :cascade do |t|
     t.string   "Name"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20160826111005) do
   create_table "flats", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "property_id"
     t.string   "name"
     t.string   "flat_nr"
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(version: 20160826111005) do
     t.integer  "rooms"
     t.string   "morepersons"
     t.string   "email"
+    t.integer  "ownerhistory_id"
+  end
+
+  create_table "ownerhistories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "move_out_date"
+    t.datetime "move_in_date"
+    t.integer  "user_id"
+    t.integer  "property_id"
+    t.integer  "flat_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "postflats", force: :cascade do |t|
@@ -112,6 +125,14 @@ ActiveRecord::Schema.define(version: 20160826111005) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  create_table "whiteboards", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "property_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

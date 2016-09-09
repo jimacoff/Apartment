@@ -67,4 +67,29 @@
 <% end %>
 
 <br />
+<h2>Whiteboard</h2>
+<div class="row">
+  <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+        <h4>Comments</h4>
+        <% if @property.whiteboards.size > 3 %>
+          <div style="height:50vh;overflow:auto;"> 
+            <%= render @property.whiteboards %> 
+          </div>
+          <% else%>
+          <div>
+            <%= render @property.whiteboards %> 
+          </div>
+
+        <% end %>
+        <br />
+       <% if can? :update, @property%>
+            <%= form_for ([@property, @property.whiteboards.build]) do |f| %>
+              <div ><%= f.text_area :content, cols: "78", rows: "3"%><br/>
+              <%= submit_tag "Submit",class: "btn btn-info" %></div>
+            <% end %> 
+      <% end %>
+       
+    </div>
+</div>
+<br />
 <h3><%= link_to 'Back', properties_path %></h3>

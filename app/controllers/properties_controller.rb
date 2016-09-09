@@ -5,12 +5,13 @@ class PropertiesController < ApplicationController
   # GET /properties.json
   def index
     @properties = Property.all
+
   end
 
   # GET /properties/1
   # GET /properties/1.json
   def show
-   
+  
   end
 
   # GET /properties/new
