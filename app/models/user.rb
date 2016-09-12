@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	has_many :tickets
 	has_many :replies
 	has_many :ownerhistories
+	has_many :mainhistories
 	belongs_to :cpanel
    	belongs_to :role
   	before_create :set_default_role
@@ -14,8 +15,19 @@ class User < ApplicationRecord
 
     devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-	private
-	def set_default_role
-	  self.role ||= Role.find_by_name('flat owner')
-	end
+
+  acts_as_messageable
+
+  def mailboxer_name
+   self.name
+  end
+
+  def mailboxer_email(object)
+   self.email
+  end
+
+  private
+  def set_default_role
+	self.role ||= Role.find_by_name('flat owner')
+  end
 end

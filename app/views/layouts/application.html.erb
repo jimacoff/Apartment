@@ -24,7 +24,10 @@
       <li><%= link_to 'Tickets',tickets_path %></li>
       <% end %>
       <li><%= link_to 'Properties',properties_path %></li>
-      </ul>
+      
+       
+       <li><span class="label label-danger pull-right"><%=unread_messages_count%></span><%= link_to "Inbox", mailbox_inbox_path %></li>
+       </ul>  
       <ul class="nav navbar-nav pull-right">
 
       <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
