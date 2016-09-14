@@ -1,6 +1,7 @@
 <table class = "table table-bordered table-striped">
    <thead>
       <tr>
+          <th>Avatar</th>
          <th>Name</th>
          <th>Surname</th>
          <th>User Role </th>
@@ -16,6 +17,7 @@
          
         
          <tr>
+         <td><%= image_tag user.avatar.thumb.url %></td>
             <td><%= user.name %></td>
             <td><%= user.surname %></td>
 

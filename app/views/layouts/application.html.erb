@@ -29,7 +29,7 @@
        <li><span class="label label-danger pull-right"><%=unread_messages_count%></span><%= link_to "Inbox", mailbox_inbox_path %></li>
        </ul>  
       <ul class="nav navbar-nav pull-right">
-
+      <li style="padding-top:5%;"><%= image_tag current_user.avatar.thumb.url, :style=> "border-radius:50%" %> </li>
       <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %>  </li> </ul>
     </div>
