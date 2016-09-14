@@ -39,6 +39,7 @@ gem 'mailboxer'
 
 gem 'chosen-rails'
 
+gem 'wdm'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
