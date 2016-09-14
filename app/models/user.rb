@@ -10,7 +10,6 @@ class User < ApplicationRecord
 	belongs_to :cpanel
    	belongs_to :role
   	before_create :set_default_role
-
   	mount_uploader :avatar, AvatarUploader
 
     devise :database_authenticatable, :registerable,
