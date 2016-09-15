@@ -20,12 +20,10 @@ class User < ApplicationRecord
 
   	acts_as_messageable
 
-	def mailboxer_name
-		current_user.name
-	end
+	
 
 	def mailboxer_email(object)
-		current_user.email
+		email
 	end
 
 	private
