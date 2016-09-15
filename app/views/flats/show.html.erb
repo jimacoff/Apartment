@@ -30,7 +30,7 @@
 		</tr>
 		<tr>
 		    <th>Move in date</th>
-			<td><%= @flat.join_date.try(:strftime, "%d/%m/%Y") %>
+			<td><%= @flat.join_date.try(:strftime, "%d-%m-%Y") %>
 		</tr>
 		<tr>
 		    <th>Relatives</th>
@@ -80,8 +80,8 @@
         <tr>
           <td><%= ownerhistory.name %></td>
           <td><%= ownerhistory.email %></td>
-          <td><%= ownerhistory.move_in_date.try(:strftime, "%d/%m/%Y") %></td>
-          <td><%= ownerhistory.move_out_date.try(:strftime, "%d/%m/%Y") %></td>
+          <td><%= ownerhistory.move_in_date.try(:strftime, "%d-%m-%Y") %></td>
+          <td><%= ownerhistory.move_out_date.try(:strftime, "%d-%m-%Y") %></td>
           <td>
             <%= link_to 'Delete', property_flat_ownerhistory_path(@property,ownerhistory.flat_id, ownerhistory), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
           </td>   
@@ -106,8 +106,8 @@
 	         
 		          <td><%= f.text_field :name ,required: true, :value => @flat.try(:name) %></td>
 		          <td><%= f.email_field :email ,required: true, :value => @flat.try(:email) %></td>
-		          <td><%= f.date_field :move_in_date ,required: true, :value => @flat.try(:join_date).try(:strftime, "%d/%m/%Y") %></td>
-		          <td><%= f.date_field :move_out_date, required: true, :value => Date.today.try(:strftime, "%d/%m/%Y") %></td>  
+		          <td><%= f.date_field :move_in_date ,required: true, :value => @flat.try(:join_date).try(:strftime, "%d-%m-%Y") %></td>
+		          <td><%= f.date_field :move_out_date, required: true, :value => Date.today.try(:strftime, "%d-%m-%Y") %></td>  
 
 	        </tr>  
 	              
