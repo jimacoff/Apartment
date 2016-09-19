@@ -1,15 +1,42 @@
-<p id="notice"><%= notice %></p> 
-<h1>Properties</h1>
-<% if can? :create, Property%>
-<div style="margin-bottom:5%"><%= link_to 'New Property', new_property_path, class: "btn btn-default" %>
-</div>
-<% end %>
 
-<div style="margin-bottom:5%">
-   <%= form_tag search_index_path, :method => 'get' do%>
-      <%= text_field_tag :search, params[:search], required: true%>
-      <%= submit_tag "Search"%>
-   <% end %>
+<p id="notice"><%= notice %></p> 
+
+
+
+<div class="row bg-white margin-lr-0">
+   <div class="col-md-12">
+      <div class=" row properties-nav nav-bg">       
+            <div class="col-md-9" >
+               <h1 class="h3white properties-title">Properties</h1>  
+            </div>      
+            <div class="col-md-3">
+                <% if can? :create, Property%>
+                  <div class="pull-right new-prop "><%= link_to ' New Property', new_property_path, class: "btn btn-lg new-btn border0 " %>
+                  </div>
+               <% end %>
+            </div>  
+      </div>
+      <div class="row">
+         <% @properties.each do |property| %>
+            <div class="col-md-3 marg-top-1">
+               <div class="img-responsive property-img"><span class="prop-user-avatar pull-right"> <%= image_tag current_user.avatar.thumb.url, class: "border-radius-50" %></span><%= image_tag current_user.avatar.medium.url, class:"property-img" %>
+
+                  
+               </div>
+               <div class="property-house border-grey text-center"><h4>name of house</h4></div>
+               <div class="row border-grey margin-lr-0">
+                  <div class="col-md-2 padding-lr-0 ">
+                     <div class=" prop-loc input-group-addon nav-bg "><span class="glyphicon glyphicon-globe"></span></div>
+                  </div>
+                  <div class="col-md-10">
+                     <div class="property-address text-left pad-left-10"><h5><%= property.address %></h5></div>
+                     <div class="property-postcode text-left pad-left-10"><h5><%= property.content %></h5></div>  
+                  </div>  
+               </div>
+            </div>
+         <% end %>
+      </div>
+   </div>
 </div>
 
 <table class = "table table-bordered table-striped">

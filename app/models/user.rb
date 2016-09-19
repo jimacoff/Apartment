@@ -23,7 +23,10 @@ class User < ApplicationRecord
 	
 
 	def mailboxer_email(object)
-		email
+		self.email
+	end
+	def mailboxer_name
+		self.name
 	end
 
 	private
