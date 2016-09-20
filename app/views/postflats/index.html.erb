@@ -1,4 +1,15 @@
-<table class = "table table-bordered table-striped">
+<p id="notice"><%= notice %></p> 
+<div class="row bg-white margin-lr-0 overflow">
+   <div class="col-md-12">
+      <div class=" row properties-nav nav-bg">       
+            <div class="col-md-9" >
+               <h1 class="h3white properties-title">My Flats</h1>  
+            </div>      
+            <div class="col-md-3">
+                
+            </div>  
+      </div>
+      <table class = "table table-bordered table-striped">
    <thead>
       <tr>
        
@@ -14,7 +25,7 @@
    </thead>
    <tbody>
    
-		<% @flats.each do |flat| %>
+      <% @flats.each do |flat| %>
          
       <tr>  
          
@@ -28,7 +39,11 @@
          <td><%= link_to 'Delete Flat', cpanel_postflat_path(@user, flat), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %></td>
             
          </tr>      
-      	<% end %>
+         <% end %>
          
   </tbody>
   </table>
+      
+   </div>
+</div>
+

@@ -21,9 +21,11 @@ Rails.application.routes.draw do
     resources :whiteboards
   end
   
+  resources :all_flats
+  
   resources :cpanel do
-    resources :posts
-    resources :postflats
+    resources :posts, :path => 'myproperties'
+    resources :postflats, :path => 'myflats'
   end
   
   resources :tickets do

@@ -80,9 +80,8 @@ class PropertiesController < ApplicationController
        @property = Property.find(params[:id])
     end
 
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:content, :name, :address)
+      params.require(:property).permit(:city, :name, :surname, :address, :zipcode, :housename, :property_image, :property_image_cache, :remove_property_image, :avatar, :avatar_cache)
     end
 end

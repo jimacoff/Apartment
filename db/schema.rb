@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913095715) do
+ActiveRecord::Schema.define(version: 20160920093743) do
 
   create_table "cpanels", force: :cascade do |t|
     t.string   "Name"
@@ -129,12 +129,16 @@ ActiveRecord::Schema.define(version: 20160913095715) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "name"
     t.string   "address"
+    t.string   "property_image"
+    t.integer  "zipcode"
+    t.string   "city"
+    t.string   "housename"
+    t.string   "surname"
   end
 
   create_table "replies", force: :cascade do |t|

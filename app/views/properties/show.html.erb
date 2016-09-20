@@ -1,26 +1,62 @@
-<p id="notice"><%= notice %></p> 
-<div class="row">
-  <div class="col-md-6 col-lg-6" >
-
-    <% if can? :update, @property%>
-      <h3 class="pull-right"><%= link_to 'Edit', edit_property_path(@property) %> </h3>
-    <% end %>
-    <h2 >Address:  <%= @property.address %>  </h2>
-    <h2  >City: <%= @property.content %></h2>  
-    <h4>Property owned by: <%= @property.name %></h4>
-    <% if can? :read, Flat%>
-      <%= link_to "Property Documents", property_documents_path(@property),class: "btn btn-default" %>
-    <% end %>
-
-    <h2 style="margin-top:10%">Flats</h2>
-    <% if can? :create, Flat %>
-      <%= link_to 'Add New flat', new_property_flat_path(@property),class: "btn btn-default" %>
-    <% end %> 
-     
-  </div>
+<div class="spacer"></div>
+<div class="row bg-white margin-lr-0 ">
+   <div class="col-md-7 padding-lr-0">
+   <%= image_tag @property.property_image.medium_land.url , class:"property-img-show " %>
+   </div>
+   <div class=" col-md-5 properties-nav  ">
+      <div class="row">  
+       <div class="col-md-12 nav-bg text-center">
+        <h1 class="h3white properties-title" ><%= @property.housename %></h1> 
+       </div>
+         <div class="col-md-12">
+            <h4>Address: <%= @property.address %></h4>   
+         </div>
+         <div class="col-md-12">
+            <h4>Zip Code: <%= @property.zipcode %> <%= @property.city %></h4>   
+         </div>
+         <div class="row">
+           <div class="col-md-4 text-center">
+              <h4><%= image_tag @property.user.avatar.small_small.url, class: "border-radius-50" %></h4>   
+           </div>
+           <div class="col-md-8">
+              <h4>Property owned by: <br> <b><%= @property.user.name %> <%= @property.user.surname %></b></h4>   
+           </div>
+         </div>
+       </div>
+       <div class="row nav-bg pad-bot-0">
+          <div class="col-md-6">
+              <div class="pull-right new-prop-btn "><%= link_to "Edit", edit_property_path(@property), class: "btn btn-lg new-btn border0 " %></div>
+         </div>
+         <div class="col-md-6">
+              <div class="pull-right new-prop-btn "><%= link_to "Delete", property_documents_path(@property), class: "btn btn-lg new-btn border0 " %></div>
+         </div>
+       </div>
+      
+   </div>
 </div>
-<br />
-<% if @property.flats.any? %>
+<div class="spacer"></div>
+
+<div class="row bg-white margin-lr-0">
+   <div class="col-md-12">
+      <div class=" row properties-nav nav-bg">       
+            <div class="col-md-8" >
+               <h1 class="h3white properties-title">Flats</h1>  
+            </div>      
+            <div class="col-md-2">
+                <% if can? :read, Property%>
+                  <div class="pull-right new-prop-btn "><%= link_to "Property Documents", property_documents_path(@property), class: "btn btn-lg new-btn border0 " %>
+                  </div>
+               <% end %>
+            </div> 
+            <div class="col-md-2">
+                <% if can? :read, Property%>
+                  <div class="pull-right new-prop-btn "><%= link_to 'Add New flat', new_property_flat_path(@property), class: "btn btn-lg new-btn border0 " %>
+                  </div>
+               <% end %>
+            </div>   
+      </div>
+      <div class="row">
+        <% if @property.flats.any? %>
   <table class = "table table-bordered table-striped">
     <thead>
       <tr>   
@@ -65,6 +101,15 @@
     </tbody>  
   </table>
 <% end %>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
 
 <br />
 <h2>Whiteboard</h2>

@@ -30,27 +30,28 @@
                     <ul class="nav margin-lr-0 main-nav-bg">
                     <h4 class="light-blue">Main</h4>
                 
-                        <li class="<%= 'active' if current_page?(properties_path) %>"><%= link_to ' PROPERTIES',properties_path, class: "glyphicon glyphicon-home" %></li> 
-                        <li class="<%= 'active' if current_page?(properties_path) %>"><%= link_to ' FLATS',properties_path, class: "glyphicon glyphicon-th" %></li> 
+                        <li class="<%= 'active' if params[:controller] == 'properties' && %w(show index new edit).include?(params[:action]) %>"><%= link_to ' PROPERTIES',properties_path, class: "glyphicon glyphicon-home" %></li> 
+                        <li class="<%= 'active' if current_page?(all_flats_path) || params[:controller] == 'flats' && %w(show index new edit).include?(params[:action])%>"><%= link_to ' FLATS', all_flats_path, class: "glyphicon glyphicon-th" %></li> 
                         
                     </ul> 
                     
                      <ul class="nav margin-lr-0 main-nav-bg"> 
                      <h4 class="light-blue">User</h4>
-                        <li class="<%= 'active' if current_page?(properties_path) %>"><%= link_to ' MY PROPERTIES',properties_path, class: "glyphicon glyphicon-home" %>
+                        <li class="<%= 'active' if current_page?(cpanel_posts_path(current_user)) %>"><%= link_to ' MY PROPERTIES', cpanel_posts_path(current_user), class: "glyphicon glyphicon-home" %>
                           
                         </li> 
-                        <li class="<%= 'active' if current_page?(properties_path) %>"><%= link_to ' MY FLATS',properties_path, class: "glyphicon glyphicon-th-large mo" %></li> 
+                        <li class="<%= 'active' if current_page?(cpanel_postflats_path(current_user)) %>"><%= link_to ' MY FLATS', cpanel_postflats_path(current_user), class: "glyphicon glyphicon-th-large mo" %></li> 
                         <% if can? :read, Cpanel%>       
-                        <li class="<%= 'active' if current_page?(tickets_path) %>"><%= link_to ' TICKETS',tickets_path, class:"glyphicon glyphicon-headphones" %></li>
+                        <li class="<%= 'active' if params[:controller] == 'tickets' && %w(index show new edit other maintenance complain).include?(params[:action]) %>"><%= link_to ' TICKETS',tickets_path, class:"glyphicon glyphicon-headphones" %></li>
                       <% end %>
-                        <li class="<%= 'active' if current_page?(mailbox_inbox_path) %>"><span class="label label-danger pull-right unread-mes" ><%=unread_messages_count%></span><%= link_to "  MESSAGES", mailbox_inbox_path, class: "glyphicon glyphicon-envelope" %></li>
+                        <li class="<%= 'active' if params[:controller] == 'mailbox' && %w(inbox sent trash).include?(params[:action]) || params[:controller] == 'conversations' && %w(new show).include?(params[:action]) %>"><span class="label label-danger pull-right unread-mes" ><%=unread_messages_count%></span><%= link_to "  MESSAGES", mailbox_inbox_path, class: "glyphicon glyphicon-envelope" %></li>
                     </ul>
                     
                     <ul class="nav margin-lr-0 main-nav-bg">
-                    <h4 class="light-blue">Admin</h4>
+                    
                       <% if can? :read, Cpanel%>
-                        <li class="<%= 'active' if current_page?(cpanel_index_path) %>"><%= link_to ' CONTROL PANEL',cpanel_index_path, class: "glyphicon glyphicon-eye-open" %></li>
+                      <h4 class="light-blue">Admin</h4>
+                        <li class="<%= 'active' if params[:controller] == 'cpanel' && %w(index).include?(params[:action])%>"><%= link_to ' CONTROL PANEL',cpanel_index_path, class: "glyphicon glyphicon-eye-open" %></li>
                       <% end %>
                     </ul> 
 
