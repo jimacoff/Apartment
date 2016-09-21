@@ -1,51 +1,9 @@
-.pad-left-5 {
-    padding-left: 5%;
-}
-
-.pad-left-10 {
-    padding-left: 10%;
-}
-
-.pad-left-20 {
-    padding-left: 20%;
-}
-
-.pad-left-30 {
-    padding-left: 30%;
-}
-
-.pad-left-40 {
-    padding-left: 40%;
-}
-
-.pad-left-50 {
-    padding-left: 50%;
-}
-
-.pad-right-5 {
-    padding-right: 5%;
-}
-
-.pad-right-10 {
-    padding-right: 10%;
-}
-
-.pad-right-20 {
-    padding-right: 20%;
-}
-
-.pad-right-30 {
-    padding-right: 30%;
-}
-
-.pad-right-40 {
-    padding-right: 40%;
-}
-
-.pad-right-50 {
-    padding-right: 50%;
-}
-
+$lblue: #9dcddb;
+$dblue: #004358;
+$orange: #fdc689;
+$grey: #F2F2F2;
+$white: #FFFFFF;
+$black: #000;
 .margin0 {
     margin: 0;
 }
@@ -55,31 +13,31 @@
 }
 
 .bg-main {
-    background-color: #F2F2F2;
+    background-color: $grey;
 }
 
 .nav-bg {
-    background-color: #004358;
+    background-color: $dblue;
 }
 
 .main-nav-bg {
     li {
         a {
-            color: #9dcddb;
+            color: $lblue;
             font-size: 1.3em;
             font-family: Calibri;
             font-weight: bold;
         }
         a:focus,
         a:hover {
-            color: #004358;
-            background-color: #9dcddb;
+            color: $dblue;
+            background-color: $lblue;
         }
     }
     .active {
-        background-color: #9dcddb;
+        background-color: $lblue;
         a {
-            color: #004358;
+            color: $dblue;
         }
     }
 }
@@ -87,22 +45,22 @@
 .drop-nav {
     li {
         a {
-            color: #000000;
+            color: $black;
         }
         a:hover,
         a:active,
         a:focus {
-            color: #000000;
-            background-color: #fdc689;
+            color: $black;
+            background-color: $orange;
         }
     }
     .dropdown {
         a:hover {
-            color: #000000;
-            background-color: #fdc689;
+            color: $black;
+            background-color: $orange;
         }
         a:active {
-            background-color: #FDC689;
+            background-color: $orange;
         }
         ul {
             margin-top: -8%;
@@ -111,20 +69,20 @@
     }
     .dropdown-menu {
         li {
-            background-color: #004358;
+            background-color: $dblue;
             a {
-                color: #9dcddb;
+                color: $lblue;
             }
             a:hover {
-                background-color: #9dcddb;
-                background-image: linear-gradient(to bottom, #9dcddb 0, #9dcddb 100%);
-                color: #004358;
+                background-color: $lblue;
+                background-image: linear-gradient(to bottom, $lblue 0, $lblue 100%);
+                color: $dblue;
             }
         }
         li:hover {
-            background-color: #9dcddb;
+            background-color: $lblue;
         }
-        background-color: #9dcddb;
+        background-color: $lblue;
     }
     .dropdown-toggle {
         li {
@@ -140,21 +98,21 @@
             a:active,
             a:focus,
             a {
-                background-color: #FDC689;
+                background-color: $orange;
             }
         }
         .drop-bg li a {
-            background-color: #004358;
+            background-color: $dblue;
         }
     }
 }
 
 .light-blue {
-    color: #9dcddb;
+    color: $lblue;
 }
 
 .prof-bg {
-    background-color: #fdc689;
+    background-color: $orange;
 }
 
 .margin-lr-0 {
@@ -217,7 +175,7 @@
 
 .properties-nav {
     .h3white {
-        color: #FFFFFF;
+        color: $white;
         font-size: 1.5em;
     }
     .properties-title {
@@ -235,13 +193,13 @@
 .new-prop-btn {
     .new-btn {
         border-width: 2px;
-        border-color: #FFFFFF;
-        color: #fff;
+        border-color: $white;
+        color: $white;
     }
     .new-btn:hover {
-        background-color: #004358;
-        color: #9dcddb;
-        border-color: #9dcddb;
+        background-color: $dblue;
+        color: $lblue;
+        border-color: $lblue;
     }
 }
 
@@ -259,7 +217,7 @@
 }
 
 .bg-white {
-    background-color: #fff;
+    background-color: $white;
 }
 
 .marg-top-1 {
@@ -268,14 +226,14 @@
 
 .border-grey {
     border-width: 1px;
-    border-color: #E4E4E4;
+    border-color: $grey;
     border-style: solid;
 }
 
 .prop-loc {
     height: 100%;
     .glyphicon {
-        color: #9dcddb;
+        color: $lblue;
         font-size: 2em;
         text-align: center;
     }
@@ -289,7 +247,7 @@ h5 {
 
 .thumb-border {
     border-width: 2px;
-    border-color: #FFFFFF;
+    border-color: $white;
     border-style: solid;
 }
 
