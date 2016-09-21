@@ -1,10 +1,10 @@
 <div class="spacer"></div>
-<div class="row bg-white margin-lr-0 ">
-   <div class="col-md-7 padding-lr-0">
-   <%= image_tag @property.property_image.medium_land.url , class:"property-img-show " %>
+<div class="row bg-white margin-lr-0 height40  ">
+   <div class="col-md-7 padding-lr-0" id="prop-img" >
+    <span class="property-img-show "> <%= image_tag @property.property_image.medium_land.url %></span>
    </div>
-   <div class=" col-md-5 properties-nav  ">
-      <div class="row">  
+   <div class=" col-md-5 properties-nav ">
+      <div class="row ">  
        <div class="col-md-12 nav-bg text-center">
         <h1 class="h3white properties-title" ><%= @property.housename %></h1> 
        </div>
@@ -23,12 +23,18 @@
            </div>
          </div>
        </div>
-       <div class="row nav-bg pad-bot-0">
+       <div class="row nav-bg padbot0 ">
           <div class="col-md-6">
-              <div class="pull-right new-prop-btn "><%= link_to "Edit", edit_property_path(@property), class: "btn btn-lg new-btn border0 " %></div>
+              <div class=" new-prop-btn pull-right prop-btns"><%= link_to (edit_property_path(@property)), class:"btn btn-lg new-btn border0" do %>
+                 <span class="glyphicon glyphicon-pencil"></span><span class="pad-r-1">Edit</span>
+                <% end %>
+              </div> 
          </div>
          <div class="col-md-6">
-              <div class="pull-right new-prop-btn "><%= link_to "Delete", property_documents_path(@property), class: "btn btn-lg new-btn border0 " %></div>
+              <div class=" new-prop-btn pull-right prop-btns"><%= link_to (property_documents_path(@property)), class:"btn btn-lg new-btn border0" do %>
+                 <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
+                <% end %>
+              </div> 
          </div>
        </div>
       
@@ -39,20 +45,24 @@
 <div class="row bg-white margin-lr-0">
    <div class="col-md-12">
       <div class=" row properties-nav nav-bg">       
-            <div class="col-md-8" >
+            <div class="col-md-6" >
                <h1 class="h3white properties-title">Flats</h1>  
             </div>      
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <% if can? :read, Property%>
-                  <div class="pull-right new-prop-btn "><%= link_to "Property Documents", property_documents_path(@property), class: "btn btn-lg new-btn border0 " %>
-                  </div>
+                  <div class=" new-prop-btn pull-right"><%= link_to (property_documents_path(@property)), class:"btn btn-lg new-btn border0" do %>
+                 <span class="glyphicon glyphicon-folder-open"></span><span class="pad-r-1">Property Documents</span>
+                <% end %>
+              </div> 
                <% end %>
             </div> 
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <% if can? :read, Property%>
-                  <div class="pull-right new-prop-btn "><%= link_to 'Add New flat', new_property_flat_path(@property), class: "btn btn-lg new-btn border0 " %>
+                  <div class=" new-prop-btn pull-right"><%= link_to (new_property_flat_path(@property)), class:"btn btn-lg new-btn border0" do %>
+                      <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">Add New Flat</span>
+                  <% end %>
                   </div>
-               <% end %>
+                <% end %>
             </div>   
       </div>
       <div class="row">

@@ -11,12 +11,15 @@
             </div>      
             <div class="col-md-3">
                 <% if can? :create, Property%>
-                  <div class="pull-right new-prop "><%= link_to ' New Property', new_property_path, class: "btn btn-lg new-btn border0 " %>
+                  <div class="pull-right new-prop ">
+                     <%= link_to (new_property_path), class:"btn btn-lg new-btn border0" do %>
+                         <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">Add New Property</span>
+                     <% end %>
                   </div>
                <% end %>
             </div>  
       </div>
-      <div class="row overflow">
+      <div id="houses" class="row overflow">
          <% @properties.each do |property| %>
             <div class="col-md-3 marg-top-1">
                <div class="img-responsive property-img"><span class="prop-user-avatar pull-right"> <%= image_tag property.user.avatar.small_small.url, class: "border-radius-50 thumb-border" %></span>

@@ -18,7 +18,7 @@ class PropertyImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [700, 700]
   end
   version :medium_land, from_version: :medium do
-    process resize_to_fill: [700, 300]
+    process resize_to_fill: [600, 250]
   end
  
  
@@ -26,6 +26,9 @@ class PropertyImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [200, 200]
   end
 
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "house.png"].compact.join('_'))
+  end
 
   
  

@@ -112,6 +112,9 @@ body {
             background-color: $dblue;
         }
     }
+    .glyphicon {
+        margin-right: 8%;
+    }
 }
 
 .light-blue {
@@ -203,11 +206,21 @@ body {
         border-color: $white;
         color: $white;
     }
+    .glyphicon {
+        margin-right: 15%;
+    }
     .new-btn:hover {
         background-color: $dblue;
         color: $lblue;
         border-color: $lblue;
     }
+    .pad-r-1 {
+        margin-right: 2em;
+    }
+}
+
+.prop-btns {
+    margin-bottom: 2%;
 }
 
 .property-img {
@@ -263,11 +276,10 @@ h5 {
     overflow: auto;
 }
 
-.property-img-show {
-    background-size: contain;
-    background-position: center center;
+.property-img-show img {
     width: 100%;
     height: 100%;
+    background-size: cover;
 }
 
 .spacer {
@@ -275,6 +287,25 @@ h5 {
     margin-bottom: 2%;
 }
 
-.pad-bot-0 {
+.padbot0 {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.marg-l {
+    margin-right: 2%;
+}
+
+.height40 {
+    height: 30vh;
+}
+
+.properties-nav {
     position: relative;
+    height: 100%;
+}
+
+#prop-img {
+    height: 100%;
 }
