@@ -39,7 +39,9 @@ gem 'mailboxer'
 
 gem 'chosen-rails'
 
-gem 'bootstrap-glyphicons'
+gem 'bootstrap-sass', '~> 3.3.6'
+
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

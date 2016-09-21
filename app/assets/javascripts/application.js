@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require chosen-jquery
 //= require turbolinks
 //= require_tree .
 //= require messages
 //= require ImageSelect
-
