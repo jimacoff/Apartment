@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require chosen-jquery
 //= require turbolinks
 
 //= require_tree .
-//= require messages
+//= require messages.coffee.js
 //= require ImageSelect

@@ -27,6 +27,18 @@ body {
     background-color: $dblue;
 }
 
+.lblue {
+    color: $lblue;
+}
+
+.dblue {
+    color: $dblue;
+}
+
+.white {
+    color: $white;
+}
+
 .main-nav-bg {
     li {
         a {
@@ -188,15 +200,6 @@ body {
         color: $white;
         font-size: 1.5em;
     }
-    .properties-title {
-        padding-bottom: 1%;
-    }
-    .new-prop {
-        padding-top: 2%;
-    }
-    .new-prop-btn {
-        padding-top: 3%;
-    }
 }
 
 .new-prop,
@@ -205,9 +208,10 @@ body {
         border-width: 2px;
         border-color: $white;
         color: $white;
+        margin: 0 auto;
     }
     .glyphicon {
-        margin-right: 15%;
+        margin: 0 0.1em;
     }
     .new-btn:hover {
         background-color: $dblue;
@@ -215,12 +219,8 @@ body {
         border-color: $lblue;
     }
     .pad-r-1 {
-        margin-right: 2em;
+        margin: 0 0.5em;
     }
-}
-
-.prop-btns {
-    margin-bottom: 2%;
 }
 
 .property-img {
@@ -238,10 +238,6 @@ body {
 
 .bg-white {
     background-color: $white;
-}
-
-.marg-top-1 {
-    margin-top: 1%;
 }
 
 .border-grey {
@@ -262,7 +258,6 @@ body {
 h5 {
     font-size: 1.1em;
     margin-bottom: 0;
-    margin-top: 2%;
 }
 
 .thumb-border {
@@ -293,12 +288,8 @@ h5 {
     position: absolute;
 }
 
-.marg-l {
-    margin-right: 2%;
-}
-
-.height40 {
-    height: 30vh;
+.prop-img-cont {
+    height: 300px;
 }
 
 .properties-nav {
@@ -308,4 +299,12 @@ h5 {
 
 #prop-img {
     height: 100%;
+}
+
+.flat-edit-btn {
+    margin-top: 0.1em;
+}
+
+#flat-btns {
+    margin-top: 2.8em;
 }
