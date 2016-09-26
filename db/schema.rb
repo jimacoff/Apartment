@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920093743) do
+ActiveRecord::Schema.define(version: 20160926143951) do
 
   create_table "cpanels", force: :cascade do |t|
     t.string   "Name"
@@ -39,12 +39,14 @@ ActiveRecord::Schema.define(version: 20160920093743) do
     t.string   "flat_nr"
     t.datetime "join_date"
     t.string   "caretaker"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "relatives"
-    t.integer  "rooms"
     t.string   "morepersons"
     t.string   "email"
     t.integer  "ownerhistory_id"
+    t.string   "surname"
+    t.string   "housenr"
+    t.string   "status"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
@@ -121,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160920093743) do
     t.integer  "flat_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "surname"
   end
 
   create_table "postflats", force: :cascade do |t|

@@ -7,7 +7,7 @@
    <div class="col-md-12 ">
       <div class=" row properties-nav nav-bg ">       
             <div class="col-md-9" >
-               <h1 class="h3white properties-title">Properties</h1>  
+               <h2 class="h3white centr-title">PROPERTIES</h2>  
             </div>      
             <div class="col-md-3">
                 <% if can? :create, Property%>
@@ -21,7 +21,7 @@
       </div>
       <div id="houses" class="row overflow">
          <% @properties.each do |property| %>
-            <div class="col-md-3 marg-top-1">
+            <div class="col-md-3 spacerem">
                <div class="img-responsive property-img"><span class="prop-user-avatar pull-right"> <%= image_tag property.user.avatar.small_small.url, class: "border-radius-50 thumb-border" %></span>
                <%= link_to property_path(property) do %>
                <%= image_tag property.property_image.small.url, class:"property-img" %>

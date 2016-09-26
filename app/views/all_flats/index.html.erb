@@ -1,53 +1,73 @@
-<p id="notice"><%= notice %></p> 
-<div class="row bg-white margin-lr-0 overflow">
-   <div class="col-md-12">
-      <div class=" row properties-nav nav-bg">       
-            <div class="col-md-9" >
-               <h1 class="h3white properties-title">Flats</h1>  
-            </div>      
-            <div class="col-md-3">
-                
-            </div>  
+<p id="notice"><%= notice %></p>
+<div class="row bg-white margin-lr-0">
+  <div class="col-md-12 col-xs-12">
+    <div class=" row properties-nav nav-bg">
+      <div class="col-md-12 col-xs-12" >
+        <h2 class="h3white centr-title">ALL FLATS</h2>
       </div>
-      <table class = "table table-bordered table-striped">
-   <thead>
-      <tr>
-       
-         <th>Property id</th>
-         <th>Flat Nr.</th>
-         <th>Owner</th>
-         <th>Email</th>
-         <th>Phone </th>
-         <th>Move in date</th>
-         <th>Show</th>
-         <th>Edit</th>
-         <th>Delete</th>
-         
-      </tr>
-   </thead>
-   <tbody>
-   
-      <% @flats.each do |flat| %>
-         
-      <tr>  
-         
-            <td><%= flat.property_id %></td>
-            <td><%= flat.flat_nr %></td>
-            <td><%= flat.name %></td>
-            <td><%= flat.email %></td>
-            <td><%= flat.phone %></td>
-            <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
-            
-            <td><%= link_to 'Show', property_flat_path(flat.property_id,flat),class: "btn btn-success" %>  </td>  
-            <td><%= link_to 'Edit', edit_property_flat_path(flat.property_id,flat), class: "btn btn-warning"%> </td>
-            <td><%= link_to 'Delete Flat', property_flat_path(flat.property_id,flat), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %></td>
-            
-         </tr>      
-         <% end %>
-         
-  </tbody>
-  </table>
-      
-   </div>
+    </div>
+    <div class="spacerem"></div>
+    <div class="row">
+      <% if @flats.any? %>
+        <div class="col-md-10 pad-r-0">
+          <table class = "table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>House Nr.</th>
+                <th>Flat Nr.</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Move in Date</th>
+                <th>Staus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @flats.each do |flat| %>
+                <tr data-link="<%= property_flat_path(flat.property_id,flat)%>">
+                  <td><%= flat.housenr %></td>
+                  <td><%= flat.flat_nr %></td>
+                  <td><%= flat.name %></td>
+                  <td><%= flat.surname %></td>
+                  <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
+                  <td><%= flat.status %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-2 pad-l-0 text-center " >
+          <table class = "table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th class="text-center">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @flats.each do |flat| %>
+                <tr>
+                  <td style="padding:0;">
+                    <div class="row " >
+                      <div class="col-md-12 flat-edit-btn padding-lr-0" >
+                        <% if can? :update, flat%>
+                          <%= link_to (edit_property_flat_path(flat.property_id, flat)), class: "btn nav-bg white border0 lblue-hover" do %>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          <% end %>
+                        <% end %>
+                        <% if can? :destroy, flat%>
+                          <%= link_to (property_flat_path(flat.property_id, flat)), method: :delete, class: "btn nav-bg white border0 lblue-hover", data: {confirm: "Are you sure?"} do %>
+                            <span class="glyphicon glyphicon-trash"></span>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
+</div>

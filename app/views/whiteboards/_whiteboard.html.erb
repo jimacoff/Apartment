@@ -1,15 +1,21 @@
-<div style="background-color:#A7D9F9"><b><%= whiteboard.user.name %> </s> <%= whiteboard.user.surname %></b> &nbsp 
-      <%= time_ago_in_words(whiteboard.created_at) %> ago 
-</div>
+<div class="row spacer">
+	<div class="col-md-1"><%= image_tag whiteboard.user.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %></div>
+	<div class="col-md-11">
+	<b><%= whiteboard.user.name %> </s> <%= whiteboard.user.surname %></b> &nbsp 
+	      <%= time_ago_in_words(whiteboard.created_at) %> ago 
+		<h5 id= "whiteboard-content" ><%= whiteboard.content %></h5>
+			 
+			<% if can? :update, whiteboard%>
+				<%= link_to 'Edit', edit_property_whiteboard_path(whiteboard.property_id, whiteboard)  %> 
+			<% end %>
+			<% if can? :destroy, whiteboard%>
+				<%= link_to 'Delete', property_whiteboard_path(whiteboard.property_id, whiteboard), method: :delete, data: {confirm: "Are you sure?"} %> 
+			<% end %>
 
-<h5 style="background-color:#EAF5FC; padding-bottom:5%; margin-top:0;padding-top:1%;margin-bottom:0;"><%= whiteboard.content %></h5>
+		
+	</div>
 
-<div style="margin-bottom:3%; ">	 
-		<% if can? :update, whiteboard%>
-			<%= link_to 'Edit', edit_property_whiteboard_path(whiteboard.property_id, whiteboard)  %> 
-		<% end %>
-		<% if can? :destroy, whiteboard%>
-			<%= link_to 'Delete', property_whiteboard_path(whiteboard.property_id, whiteboard), method: :delete, data: {confirm: "Are you sure?"} %> 
-		<% end %>
+
+	
 </div>
 

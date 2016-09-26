@@ -35,7 +35,7 @@ class OwnerhistoriesController < ApplicationController
 	private
 
 		def ownerhistories_params
-			params.require(:ownerhistory).permit(:name, :email, :move_in_date, :move_out_date)	
+			params.require(:ownerhistory).permit(:name, :surname, :email, :move_in_date, :move_out_date)	
 		end
 		
 		def find_flat

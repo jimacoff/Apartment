@@ -18,8 +18,14 @@
   	<% end %>
 	<div class="row">
 		<div class="col-md-6 col-lg-6">
-			<%= f.label 'Owners name *'%>
+			<%= f.label 'Name *'%>
 			<%= f.text_field :name ,required: true%>
+			<br />
+			<%= f.label 'Surname *'%>
+			<%= f.text_field :surname ,required: true%>
+			<br />
+			<%= f.label 'House number *'%>
+			<%= f.text_field :housenr,required: true %>
 			<br />
 			<%= f.label 'Apartment number *'%>
 			<%= f.text_field :flat_nr,required: true %>
@@ -30,8 +36,6 @@
 		   	<%= f.label :Email %>
 		   	<%= f.email_field :email%>
 		   	<br />
-		   	<%= f.label :Room_count %>
-		   	<%= f.text_field :rooms%>
 		   	
 	   	</div>
 	    <div class="col-md-6 col-lg-6">
@@ -52,6 +56,8 @@
 			<%= f.label :Description %>
 		    <%= f.text_area :content %>
 		    <br />
+		    <%= f.label 'Flat Status *' %>
+    		<%= f.select :status, ['Rented', 'Free', 'Owned', 'For Sale', 'For Rent']%>
 	    </div>
     </div>
     <%= link_to 'Back', property_path(@property) %><br />
