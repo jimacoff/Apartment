@@ -5,11 +5,8 @@ class PostflatsController < ApplicationController
   def index
     authorize! :read, Cpanel
   	@user = User.find (params[:cpanel_id])
-  	@flats = Flat.where user_id: @user
-  
-    
-
-  	
+  	@flats = Flat.where user_id: @user 
+    @addresses = Property.where id: @flats	
   end
 
   def destroy
@@ -21,7 +18,8 @@ class PostflatsController < ApplicationController
   def find_flat
   	@flat = Flat.find(params[:id])
   end
-   def find_property
+  def find_property
   	@property = Property.find(params[:property_id])
   end
+
 end

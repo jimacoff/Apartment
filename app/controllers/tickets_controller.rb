@@ -6,19 +6,23 @@ class TicketsController < ApplicationController
     @orderby = "created_at desc"
   	@tickets = Ticket.all.order(@orderby) 
     #@replies = Reply.find(params[:ticket_id])
+    @url = request.path_info
    
   end
 
   def complain
   	@tickets = Ticket.where selection: 'complain'
+    @url = request.path_info
   end
 
   def maintenance
   	@tickets = Ticket.where selection: 'maintenance'
+    @url = request.path_info
   end
 
   def other
   	@tickets = Ticket.where selection: 'other'
+    @url = request.path_info
   end
 
   def edit

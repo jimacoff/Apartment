@@ -51,7 +51,7 @@
                           <% end %>
                         </li> 
                         <li class="<%= 'active' if current_page?(cpanel_postflats_path(current_user)) %>">
-                          <%= link_to (tickets_path) do %>             
+                          <%= link_to (cpanel_postflats_path(current_user)) do %>             
                             <span class="glyphicon glyphicon-th-large"></span><span>MY FLATS</span>
                           <% end %>
                         </li> 
