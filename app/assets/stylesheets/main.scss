@@ -4,6 +4,7 @@
     $dblue: #004358;
     $orange: #fdc689;
     $grey: #F2F2F2;
+    $dgrey: #CFCFCF;
     $white: #FFFFFF;
     $black: #000;
     body {
@@ -267,6 +268,12 @@
         border-style: solid;
     }
     
+    .border-dgrey {
+        border-width: 2px;
+        border-color: $dgrey;
+        border-style: solid;
+    }
+    
     .prop-loc {
         height: 100%;
         .glyphicon {
@@ -277,8 +284,9 @@
     }
     
     h5 {
-        font-size: 1.1em;
-        margin-bottom: 0;
+        font-size: 1.4em;
+        font-family: Calibri;
+        font-weight: bold;
     }
     
     .thumb-border {
@@ -305,6 +313,11 @@
     .spacer {
         margin-top: 2%;
         margin-bottom: 2%;
+    }
+    
+    .spacer2 {
+        margin-top: 4%;
+        margin-bottom: 4%;
     }
     
     .padbot0 {
@@ -429,4 +442,75 @@
     
     .border-bot {
         border-bottom: solid 0.5em $dblue;
+    }
+    
+    #prop-text-small {
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        h5 {
+            margin-top: 0;
+            margin-bottom: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            .glyphicon {
+                margin-left: 0.5em;
+                margin-right: 1em;
+                top: 0.2em;
+            }
+        }
+    }
+    
+    .property-house h4 {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    
+    //forms
+    .form-title {
+        label {
+            font-size: 1.3em;
+        }
+    }
+    
+    .form-field {
+        font-size: 1.3em;
+        float: right;
+    }
+    
+    .form-field-select {
+        font-size: 1em;
+        select {
+            padding-right: 1em;
+        }
+        h5 {
+            margin: 0;
+        }
+    }
+    
+    .pad-top-forms {
+        margin-bottom: 0.5em;
+    }
+    
+    .dblue-border-bot {
+        border-bottom: solid 0.5em $dblue;
+    }
+    
+    .form-main-title {
+        font-size: 1.3em;
+        margin-bottom: 1em;
+    }
+    
+    .form-textarea {
+        width: 100%;
+    }
+    
+    .btn-ticket {
+        .glyphicon {
+            margin-right: 1em;
+        }
+        .btn:focus {
+            color: $white;
+        }
     }
