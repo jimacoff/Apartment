@@ -1,17 +1,20 @@
 <div class="row spacer"></div>
-  <div class="col-md-1"><%= image_tag reply.user.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %>
-  	
-  </div>
-  <div class="col-md-11">
-    <b><%= reply.user.name %> </s> <%= reply.user.surname %></b> &nbsp 
+<div class="col-md-1"><%= image_tag reply.user.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %>
+</div>
+<div class="col-md-11">
+  <b><%= reply.user.name %>&nbsp<%= reply.user.surname %></b>&nbsp 
 	      <%= time_ago_in_words(reply.created_at) %> ago 
-		
-  
-  <p id= "whiteboard-content "  ><%= reply.content %></p>
-  <% if can? :update, reply%>
-    <%= link_to 'Edit', edit_ticket_reply_path(reply.ticket_id, reply)  %>
-  <% end %>
-  <% if can? :destroy, reply%>
-    <%= link_to 'Delete', ticket_reply_path(reply.ticket_id, reply), method: :delete, data: {confirm: "Are you sure?"} %>
-  <% end %>
+	      
+  <div class="border-bot-dgrey">
+    <p id= "whiteboard-content "  ><%= reply.content %></p>
+    <% if @ticket.status == false %>
+      <% if can? :update, reply%>
+        <%= link_to 'Edit', edit_ticket_reply_path(reply.ticket_id, reply)  %>
+      <% end %>
+      <% if can? :destroy, reply%>
+        <%= link_to 'Delete', ticket_reply_path(reply.ticket_id, reply), method: :delete, data: {confirm: "Are you sure?"} %>
+      <% end %>
+    <% end %>
+    <div class="spacer"></div>
+  </div>
 </div>

@@ -3,7 +3,7 @@
   <div class="col-md-12 col-xs-12 " id="flat-details">
     <div class=" row properties-nav nav-bg">
       <div class="col-md-8 col-xs-12" >
-        <h2 class="h3white centr-title">TICKET #<%= @ticket.id %></h2>
+        <h2 class="h3white centr-title">TICKET #<%= @ticket.id %> - <%= @ticket.subject%></h2>
       </div>
       <div class="col-md-2 col-xs-12">
         <% if @ticket.status == false %>
@@ -31,7 +31,8 @@
 	</div>
     <div class="spacer"></div>
     <div class="row ">
-      <div class="col-md-6">
+      <div class="col-md-12 ">
+      <div class="col-md-6 pad-l-0 border-bot-dgrey">
         <table class="table table-bordered table-striped">
           <tbody>
             <tr>
@@ -39,13 +40,26 @@
               <td><%= @ticket.selection %></td>
             </tr>
             <tr>
-              <th>Address</th>
-              <td><%= @ticket.address %></td>
+              <th>Status</th>
+              <%if @ticket.status == false %>
+                <td>
+                  Open
+                </td>
+              <% else %>
+                <td>
+                  Closed
+                </td>
+              <% end %>
             </tr>
-            <tr>
-              <th>Flat Nr.</th>
-              <td><%= @ticket.flat_nr %></td>
-            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      	<div class="col-md-12">
+        <div class="col-md-6 spacer border-bot-dgrey pad-l-0">
+        <table class="table table-bordered table-striped">
+          <tbody>
             <tr>
               <th>Name</th>
               <td><%= @ticket.name %></td>
@@ -62,17 +76,31 @@
               <th>Email</th>
               <td><%= @ticket.user.email %></td>
             </tr>
-            <tr>
-              <th>Subject</th>
-              <td><%= @ticket.subject %></td>
-            </tr>
           </tbody>
         </table>
       </div>
+
+      <div class="col-md-6 spacer pad-r-0">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th>Address</th>
+              <td><%= @ticket.address %></td>
+            </tr>
+            <tr>
+              <th>Flat Nr.</th>
+              <td><%= @ticket.flat_nr %></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+	
+      
       <div class="col-md-12">
         <table class = "table table-bordered table-striped">
           <tbody>
-            <th>Ticket Description</th>
+            <th class="nav-bg white">Ticket Description</th>
             <tr>
               <td><%= @ticket.content %></td>
             </tr>
@@ -80,51 +108,45 @@
         </table>
       </div>
     </div>
-    
   </div>
 </div>
+<div class="spacer"></div>
 <div class="row bg-white margin-lr-0">
-    <div class="col-md-12 col-xs-12">
-      <div class=" row properties-nav nav-bg">
-        <div class="col-md-12 col-xs-12" >
-          <h2 class="h3white centr-title capitalize">Comments</h2>
-        </div>
+  <div class="col-md-12 col-xs-12">
+    <div class=" row properties-nav nav-bg">
+      <div class="col-md-12 col-xs-12" >
+        <h2 class="h3white centr-title capitalize">Comments</h2>
       </div>
     </div>
-    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
-      <% if @ticket.replies.size > 3 %>
-        <div class="col-md-12 padding-lr-0" style="height:50vh; overflow:auto;box-sizing: border-box;" >
-          <%= render @ticket.replies %>
-        </div>
-      <% else%>
-        <div class="col-md-12 padding-lr-0 " style="box-sizing: border-box;">
-          <%= render @ticket.replies %>
-        </div>
-      <% end %>
-      <br />
-      <% if @ticket.status == false %>
-        <% if can? :update, @ticket%>
+  </div>
+  <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+   
+    <div class="col-md-12 padding-lr-0 " >
+      <%= render @ticket.replies %>
+    </div>
+    <div class="spacer"></div>
+    <% if @ticket.status == false %>
+      <% if can? :update, @ticket%>
         <%= form_for ([@ticket, @ticket.replies.build]) do |f| %>
           <div class="col-md-12 bg-main spacer">
             <div class="row  spacer">
               <div class="col-md-1"><%= image_tag current_user.avatar.small_small.url, class: "border-radius-50" %></div>
-              <div class="col-md-11"><%= f.text_area :content, rows: "3", placeholder: "Add a comment...", class: "comment-box" %><br/>
+              <div class="col-md-11"><%= f.text_area :content, rows: "3", placeholder: "Write a comment...", class: "comment-box" %><br/>
                 <%= submit_tag "Comment", class: "btn nav-bg white border0 pull-right lblue-hover" %></div>
             </div>
           </div>
         <% end %>
-         
       <% end %>
-      <% else %>
-        <div class="text-center"><h3>Ticket closed!</h3></div>
-      <% end %>
-      <div class="spacer"></div>
-    </div>
+    <% end %>
+    <div class="spacer"></div>
   </div>
+  <div class="spacer"></div>
+</div>
 <div class="spacer"></div>
 <div class="row bg-white margin-lr-0">
-<div class="spacer"></div>
+  <div class="spacer"></div>
   <div class="col-md-12 col-lg-12 text-center" id="contact-sup">
+  
     <% if can? :manage, Ticket%>
       <% if @ticket.status == false %>
         <%= link_to (flop_ticket_path(@ticket)),class: "btn btn-lg nav-bg new-btn white border0 lblue-hover" do %>
@@ -134,9 +156,17 @@
     <% end %>
     <% if can? :manage, Ticket%>
       <% if @ticket.status == true %>
+      <div class="text-center ticket-btn">
+        <span class="ticket-txt">This ticket has been closed!<br/> Click </span>
+      
         <%= link_to (flop_ticket_path(@ticket)),class: "btn btn-lg nav-bg new-btn white border0 lblue-hover" do %>
           <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Reopen Ticket</span>
         <% end %>
+        <span class="ticket-txt"> and continue conversation.
+        Or create a 
+        <%= link_to (new_ticket_path),class: "btn btn-lg nav-bg new-btn white border0 lblue-hover" do %>
+          <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">New Ticket</span>
+        <% end %></div>
       <% end %>
     <% end %>
     <div class="spacer"></div>

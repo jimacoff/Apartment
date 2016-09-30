@@ -7,12 +7,20 @@
     $dgrey: #CFCFCF;
     $white: #FFFFFF;
     $black: #000;
+    html {
+        overflow-y: scroll;
+    }
+    
     body {
         margin: 0;
     }
     
     .margin0 {
         margin: 0;
+    }
+    
+    .vh100 {
+        min-height: 100vh;
     }
     
     .border-radius-50 {
@@ -166,10 +174,6 @@
     .unread-mes {
         margin-right: 20%;
         margin-top: 5%;
-    }
-    
-    .min-height {
-        min-height: 100%;
     }
     
     .prof-pic {
@@ -375,8 +379,8 @@
         margin-bottom: 0;
     }
     
-    #image-comment {
-        padding-top: 0.5em;
+    .border-bot-dgrey {
+        border-bottom: solid 0.1em $dgrey;
     }
     
     .lblue-hover:hover {
@@ -512,5 +516,22 @@
         }
         .btn:focus {
             color: $white;
+        }
+    }
+    
+    .ticket-txt {
+        font-size: 1.7em;
+        padding-top: 1em;
+    }
+    
+    .ticket-btn {
+        .btn {
+            margin-bottom: 0.5em;
+        }
+    }
+    
+    .test {
+        input {
+            font-size: 1.3em;
         }
     }

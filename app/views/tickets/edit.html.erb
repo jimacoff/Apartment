@@ -1,60 +1,94 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
-<h1>Edit Ticket</h1>
-<%= form_for @ticket do |f| %>
-	<% if @ticket.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this flat from being saved:</h2>
-
-      <ul>
-      <% @ticket.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="spacer"></div>
+<div class="row bg-white margin-lr-0 ">
+  <div class="col-md-12 ">
+    <div class=" row properties-nav nav-bg ">
+      <div class="col-md-12" >
+        <h2 class="h3white centr-title capitalize">Edit Ticket</h2>
+      </div>
     </div>
-  	<% end %>
-	<div class="row">
-		<div class="col-md-6 col-lg-6">
-			<%= f.label 'Property address *'%>
-			<%= f.text_field :address ,required: true%>
-			<br />
-			<%= f.label 'Apartment number *'%>
-			<%= f.text_field :flat_nr,required: true %>
-			<br />
-		   	<%= f.label 'Name *' %>
-		   	<%= f.text_field :name, required: true %>
-		   	<br />
-		   	<%= f.label :Phone %>
-		   	<%= f.telephone_field :phone%>
-		   	<br />
-		   	<%= f.label :Email %>
-		   	<%= f.email_field :email%>
-		   	<br />
-		   	<%= f.label 'Subject *' %>
-		   	<%= f.text_field :subject, required: true %>
-		   	<br />
-		   	<%= f.label 'Ticket Description *' %>
-		   	<%= f.text_area :content,required: true%>
-		   	<br />	
-		   	<%= f.label 'Ticket type *' %>
-	   		<div class="radio-inline">
-	   			
-			   	<h5 ><%= f.collection_radio_buttons :selection, {complain: 'Complain', maintenance: 'Maintenance', other: 'Other'}, :first, :last, required: true  
-			   	%>  
-	    		</h5>
-    		</div>
-    		
-    	</div>
-    
-	    <div class="col-md-4 col-md-offset-4">
-	    	<%= f.submit "Save Changes" %>
-	    </div>
-	</div>
-<% end %>
+  </div>
+  <div class="col-md-12">
+    <div class="spacer"></div>
+    <%= form_for @ticket do |f| %>
+      <% if @ticket.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this flat from being saved:</h2>
+          <ul>
+            <% @ticket.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-lg-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-main-title text-center dblue-border-bot">
+                <h5>User</h5>
+              </div>
+              <span class="form-title"><%= f.label 'Name *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :name, required: true, :value => current_user.name%></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Surname *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :surname, required: true, :value => current_user.surname %></span>
+            </div>
+            <div class="col-md-12">
+              <div class="form-main-title text-center dblue-border-bot">
+                <h5>Property</h5>
+              </div>
+              <span class="form-title"><%= f.label 'Property address *'%></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :address ,required: true %></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Apartment number *'%></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :flat_nr,required: true %></span>
+            </div>
+            <div class="col-md-12">
+              <div class="form-main-title text-center dblue-border-bot">
+                <h5>Contacts</h5>
+              </div>
+              <span class="form-title"><%= f.label :Phone %></span>
+              <span class="form-field pad-top-forms"><%= f.telephone_field :phone %></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label :Email %></span>
+              <span class="form-field pad-top-forms"><%= f.email_field :email, :value => @ticket.user.try(:email) %></span>
+            </div>
+            <div class="col-md-12">
+              <div class="form-main-title text-center dblue-border-bot">
+                <h5>Ticket Content</h5>
+              </div>
+              <span class="form-title"><%= f.label 'Subject *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :subject, required: true %></span>
+            </div>
+            <div class="col-md-12">
+              <div class="form-title"><%= f.label 'Ticket Description *' %></div>
+              <div class="pad-top-forms"><%= f.text_area :content,required: true, rows: 5, class: "form-textarea" %></div>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Ticket type *' %></span>
+              <span class="radio-inline form-field-select pad-top-forms">
+                <h5>
+			   	<%= f.select :selection, ['Maintenance', 'Complain', 'Other']%>
+                </h5>
+              </span>
+            </div>
 
+          </div>
+          <div class="spacer2"></div>
+        </div>
 
+        <div class="col-md-12 text-center">
+          <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
+        <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Submit Ticket</span>
+      <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="spacer"></div>
+  </div>
 
-
+</div>
+<div class="spacer"></div>

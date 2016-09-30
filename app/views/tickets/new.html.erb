@@ -28,11 +28,11 @@
                 <h5>User</h5>
               </div>
               <span class="form-title"><%= f.label 'Name *' %></span>
-              <span class="form-field pad-top-forms"><%= f.text_field :name, required: true, :value => @user.try(:name)%></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :name, required: true, :value => current_user.name%></span>
             </div>
             <div class="col-md-12">
               <span class="form-title"><%= f.label 'Surname *' %></span>
-              <span class="form-field pad-top-forms"><%= f.text_field :surname, required: true, :value => @user.try(:surname)%></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :surname, required: true, :value => current_user.surname %></span>
             </div>
             <div class="col-md-12">
               <div class="form-main-title text-center dblue-border-bot">
@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-12">
               <span class="form-title"><%= f.label :Email %></span>
-              <span class="form-field pad-top-forms"><%= f.email_field :email, :value => @user.try(:email)%></span>
+              <span class="form-field pad-top-forms"><%= f.email_field :email, :value => current_user.try(:email)%></span>
             </div>
             <div class="col-md-12">
               <div class="form-main-title text-center dblue-border-bot">

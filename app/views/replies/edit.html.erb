@@ -1,9 +1,18 @@
-<h1>Editing Comment</h1>
-
+<div class="row spacer bg-white margin-lr-0 ">
+  <div class="col-md-12 ">
+    <div class=" row properties-nav nav-bg ">
+      <div class="col-md-12" >
+        <h2 class="h3white centr-title capitalize">Edit Comment</h2>
+      </div>
+    </div>
+  
 <%= form_for ([@ticket, @reply]) do |f| %>
-	          <div ><%= f.text_area :content, cols: "78", rows: "3"%><br/>
-	          <%= submit_tag "Submit",class: "btn btn-info" %></div>
-	        <% end %> 
-<br />
-<br/>
-<%= link_to 'Back', ticket_path(@ticket) %>
+          <div class="col-md-12 bg-main spacer">
+            <div class="row  spacer">
+              <div class="col-md-1"><%= image_tag current_user.avatar.small_small.url, class: "border-radius-50" %></div>
+              <div class="col-md-11"><%= f.text_area :content, rows: "3", placeholder: "Write a comment...", class: "comment-box" %><br/>
+                <%= submit_tag "Save Changes", class: "btn nav-bg white border0 pull-right lblue-hover" %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>

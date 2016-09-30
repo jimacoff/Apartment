@@ -10,7 +10,7 @@
     <div class="container-fluid bg-main">  
       <div class="row "> 
           <% if user_signed_in? %>
-            <div class="col-md-2 nav-bg min-height">
+            <div class="col-md-2 nav-bg vh100">
             <div class="row prof-bg">
             <div class="col-md-12">
                   <div class="navbar-header width100 margin0">
@@ -27,7 +27,7 @@
                   </div>
                   </div>
                   <div class="navbar-header width100">
-                    <ul class="nav margin-lr-0 main-nav-bg">
+                    <ul class="nav margin-lr-0 main-nav-bg ">
                     <h4 class="light-blue">Main</h4>
                 
                         <li class="<%= 'active' if params[:controller] == 'properties' && %w(show index new edit).include?(params[:action]) %>">

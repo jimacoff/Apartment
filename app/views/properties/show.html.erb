@@ -13,7 +13,7 @@
         <h4>Address: <%= @property.address %></h4>
       </div>
       <div class="col-md-12 col-xs-12 prop-box-1">
-        <h4>Zip Code: <%= @property.zipcode %> <%= @property.city %></h4>
+        <h4>City: <%= @property.zipcode %> <%= @property.city %></h4>
       </div>
       <div class="col-md-12 col-xs-12">
         <div class="row prop-box-2">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="col-md-6 col-xs-6">
-        <div class=" new-prop-btn  prop-btns text-center"><%= link_to (property_documents_path(@property)), class:"btn btn-lg new-btn border0" do %>
+        <div class=" new-prop-btn  prop-btns text-center"><%= link_to property_path, method: :delete, class:"btn btn-lg new-btn border0", data: {confirm: "Are you sure?"} do %>
             <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
           <% end %>
         </div>
@@ -147,6 +147,7 @@
       </div>
     </div>
     <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+    <div class="spacer"></div>
       <% if @property.whiteboards.size > 3 %>
         <div class="col-md-12" style="height:50vh; overflow:auto;">
           <%= render @property.whiteboards %>
