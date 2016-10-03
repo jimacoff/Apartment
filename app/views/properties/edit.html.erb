@@ -8,7 +8,6 @@
     </div>
   </div>
   <%= form_for(@property) do |f| %>
-    
     <div class="row">
       <div class="col-md-6 col-md-offset-3 col-lg-6">
         <div class="spacer2"></div>
@@ -38,32 +37,28 @@
             <span class="form-field pad-top-forms"><%= f.text_field :zipcode ,required: true %></span>
           </div>
           <div class="col-md-12 spacer2">
-          <span class="form-title"><%= f.label 'Property Image'%></span>
+            <span class="form-title"><%= f.label 'Property Image'%></span>
             <span class="form-title  "><%= f.label :image do %></span>
-              <span class="form-title pull-right test"><%= f.file_field :property_image  %></span>
+              <span class="form-title pull-right file-input"><%= f.file_field :property_image  %></span>
               <span class="form-field "><%= f.hidden_field :property_image_cache %></span>
             <% end %>
           </div>
         </div>
       </div>
       <div class="col-md-12 text-center">
-      <div class="spacer"></div>
+        <div class="spacer"></div>
         <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
           <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Save Changes</span>
         <% end %>
         <div class="spacer"></div>
       </div>
-      </div>
-      <div class="col-md-12 text-center">
-      
-        <%= link_to property_path, class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket", method: :destroy, data: {confirm: "Are you sure?"} do %>
-          <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete Property</span>
-        <% end %>
-        
-        <div class="spacer"></div>
-      </div>
-      </div>
-      
-    <% end %>
-    
+    </div>
+    <div class="col-md-12 text-center">
+      <%= link_to property_path, class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket", method: :destroy, data: {confirm: "Are you sure?"} do %>
+        <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete Property</span>
+      <% end %>
+      <div class="spacer"></div>
+    </div>
   </div>
+<% end %>
+</div>

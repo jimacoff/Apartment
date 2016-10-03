@@ -14,7 +14,12 @@
           </div>
         <% end %>
       </div>
-    </div>
+    </div><% if @properties.size == 0 %>
+      <div class="text-center">
+        <h3 >No properties added!</h3>
+        <div class="spacer"></div>
+      </div>
+    <% else %>
     <div id="houses" class="row overflow">
       <% @properties.each do |property| %>
         <div class="spacer"></div>
@@ -43,6 +48,7 @@
         <div class="spacer"></div>
       <% end %>
     </div>
+    <% end %>
     <div class="spacer"></div>
   </div>
 </div>

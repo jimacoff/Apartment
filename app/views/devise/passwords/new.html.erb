@@ -5,13 +5,14 @@
       <div class="col-md-12 ">
         <div class=" row properties-nav nav-bg ">
           <div class="col-md-12" >
-            <h2 class="h3white centr-title capitalize">Sign In</h2>
+            <h2 class="h3white centr-title capitalize">Recover Password</h2>
           </div>
         </div>
       </div>
       <div class="col-md-12">
         <div class="spacer2"></div>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
           <div class="row">
             <div class="col-md-8 col-md-offset-2 col-lg-8">
               <div class="row">
@@ -19,19 +20,10 @@
                   <span class="form-title"><%= f.label 'Email ' %></span>
                   <span class="form-field pad-top-forms"><%= f.email_field :email, required: true %></span>
                 </div>
-                <div class="col-md-8 col-md-offset-2">
-                  <span class="form-title"><%= f.label 'Password' %></span>
-                  <span class="form-field pad-top-forms"><%= f.password_field :password, autocomplete: "off", required: true %></span>
-                </div>
-                <div class="col-md-4 col-md-offset-5 ">
-                  <% if devise_mapping.rememberable? %>
-                    <span><%= f.check_box :remember_me  %></span>
-                    <span class="form-title"><%= f.label 'Remember me' %></span>
-                  <% end %>
-                </div>
+               
                 <div class="col-md-12 text-center spacer">
                   <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
-                    <span class="glyphicon glyphicon-ok"></span><span class="pad-r-1">Sign In</span>
+                    <span class="glyphicon glyphicon-flag"></span><span class="pad-r-1">Send me reset password instructions</span>
                   <% end %>
                 </div>
                 <div class="col-md-12 text-center">

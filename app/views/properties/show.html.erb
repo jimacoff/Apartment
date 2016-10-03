@@ -7,13 +7,13 @@
   <div class=" col-md-5 col-xs-12 properties-nav ">
     <div class="row ">
       <div class="col-md-12 col-xs-12 nav-bg text-center">
-        <h2 class="h3white centr-title" ><%= @property.housename %></h2>
+        <h2 class="h3white centr-title capitalize2" ><%= @property.housename %></h2>
       </div>
       <div class="col-md-12 col-xs-12 prop-box-1">
-        <h4>Address: <%= @property.address %></h4>
+        <h4 class="capitalize2">Address: <%= @property.address %></h4>
       </div>
       <div class="col-md-12 col-xs-12 prop-box-1">
-        <h4>City: <%= @property.zipcode %> <%= @property.city %></h4>
+        <h4 class="capitalize2">City: <%= @property.zipcode %> <%= @property.city %></h4>
       </div>
       <div class="col-md-12 col-xs-12">
         <div class="row prop-box-2">
@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-8 col-xs-8">
             <h4>Property owned by: <br>
-               <b><%= @property.user.name %> <%= @property.user.surname %></b></h4>
+               <b class="capitalize2"><%= @property.user.name %> <%= @property.user.surname %></b></h4>
           </div>
         </div>
       </div>

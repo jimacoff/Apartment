@@ -1,50 +1,108 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<div class="spacer"></div>
+<div class="row bg-white margin-lr-0 ">
+  <div class="col-md-12 ">
+    <div class=" row properties-nav nav-bg ">
+      <div class="col-md-12" >
+        <h2 class="h3white centr-title capitalize">Edit Profile</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="spacer"></div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
+      <%= devise_error_messages! %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-lg-6">
+          <div class="row">
+            <div class="col-md-12">
+            <div class="form-main-title text-center dblue-border-bot">
+                <h5>User</h5>
+              </div>
+              <span class="form-title"><%= f.label 'Name *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :name, required: true%></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Surname *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :surname, required: true %></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Email *' %></span>
+              <span class="form-field pad-top-forms"><%= f.email_field :email, required: true %></span>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <div class="col-md-12">
+            <div class="form-main-title text-center dblue-border-bot">
+                <h5>Avatar</h5>
+              </div>
+              
+              <div class="row">
+              <div class="col-md-6 text-center">
+              <div class="form-title text-center"><%= f.label 'Current avatar'%></div>
+              <%= image_tag(current_user.avatar.medium.url)%>
+              </div>
+              <div class="col-md-6 ">
+              <div class="form-title text-center"><%= f.label 'Edit'%></div>
+              <div class="form-title  "><%= f.label :image do %></div>
+                <div class="form-title file-input"><%= f.file_field :avatar  %></div>
+                <div class="form-field "><%= f.hidden_field :avatar_cache %></div>
+              <% end %>
+              <div class="spacer2"></div>
+              <%= f.label :remove_avatar do %>
+                <span class="form-title  "><%= f.label "Remove avatar?" %></span>
+                <span class="form-title check-box "><%= f.check_box :remove_avatar %></span>
+              <% end %>
+              </div>
+              </div>
+              
+              
+              
 
-    
-    <div><%= f.label :name %>
-        <%= f.text_field :name, autofocus: true %></div>
+            
+            </div>
+            
+            <div class="col-md-12">
+              <div class="form-main-title text-center dblue-border-bot">
+                <h5>Change Password</h5>
+              </div>
+              <div class=" spacer"><i>Leave blank if you don't want to change it</i></div>
+              <span class="form-title"><%= f.label 'New Password' %></span>
+              <span class="form-field pad-top-forms"><%= f.password_field :password, autocomplete: "off" %></span>
+            </div>
+            <div class="col-md-12">
 
-    <div><%= f.label :surname %>
-        <%= f.text_field :surname, autofocus: true %></div>
+              <span class="form-title"><%= f.label 'Confirm Password' %></span>
+              <span class="form-field pad-top-forms"><%= f.password_field :password_confirmation, autocomplete: "off" %></span>
+            </div>
+            <div class="col-md-12">
+            <div class="form-main-title text-center dblue-border-bot">
+                <h5>Confirm Changes</h5>
+              </div>
+              
+              <span class="form-title"><%= f.label 'Current Password' %></span>
+              <span class="form-field pad-top-forms"><%= f.password_field :current_password, autocomplete: "off" %></span>
+              <div class="spacer2"></div>
+            </div>
+          </div>
+          <div class="spacer2"></div>
 
-
-    <div><%= f.label :email %>
-        <%= f.email_field :email %></div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        </div>
+        <div class="col-md-12 text-center">
+          <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
+            <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Save Changes</span>
+          <% end %>
+        </div>
+        <div class="col-md-12 text-center">
+        <div class="spacerem"></div>
+          <%= link_to (registration_path(resource_name)), class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket", method: :destroy, data: {confirm: "Are you sure?"} do %>
+            <span class="glyphicon glyphicon-warning-sign"></span><span class="pad-r-1">Delete Account!</span>
+          <% end %>
+          
+        </div>
+      </div>
     <% end %>
-    <br />
-    <% if current_user.avatar.url.present? %>
-        <%= image_tag(current_user.avatar.medium.url) %> 
-        <%= f.label :remove_avatar do %>
-            <%= f.label "Remove avatar?" %>
-            <%= f.check_box :remove_avatar %>
-        <% end %>
-    <% end %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-    
-    <h3>Change password</h3>
-    <i>leave blank if you don't want to change it</i><br /><br />
-    <div><%= f.label :New_password %> 
-        <%= f.password_field :password, autocomplete: "off" %></div>
-
-    <div><%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %></div><br/><br />
-
-    <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "off" %></div><br />
-
-
-    <div><%= f.submit "Update" %></div><br />
-    <% end %>
-
-    <h3>Delete my account</h3>
-
-    <p> <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-    <%= link_to "Back", :back %>
+    <div class="spacer"></div>
+  </div>
+</div>
+<div class="spacer"></div>

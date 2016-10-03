@@ -1,18 +1,53 @@
-  <%= form_for ([@property, @flat, @mainhistory]) do |f| %>	  
-    <%= f.label "Problem" %>
-    <%= f.text_area :problem, required: true %>
-    <br />
-     <%= f.label "Name" %>
-    <%= f.text_field :name, required: true %>
-    <br />
-    <%= f.label "Surname" %>
-    <%= f.text_field :surname, required: true %>
-    <br />
-    <%= f.label "Date of fix" %>
-    <%= f.date_field :fix_date,  required: true %>
-    <br />  
-    <br />
-	<%= submit_tag "Submit",class: "btn btn-info" %>    
-<% end %> 
-<br />
- <%= link_to 'Delete Fix', property_flat_mainhistory_path(@property,@mainhistory.flat_id, @mainhistory), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+<div class="spacer"></div>
+<div class="row bg-white margin-lr-0 ">
+  <div class="col-md-12 ">
+    <div class=" row properties-nav nav-bg ">
+      <div class="col-md-12" >
+        <h2 class="h3white centr-title capitalize">Edit Fix</h2>
+      </div>
+    </div>
+  </div>
+  <% if !flash[:notice].blank? %>
+    <div class = "alert alert-info">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <%= form_for ([@property, @flat, @mainhistory]) do |f| %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-lg-6">
+        <div class="spacer2"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="form-title"><%= f.label "Name *" %></span>
+            <span class="form-field pad-top-forms"><%= f.text_field :name, required: true, :value => current_user.name%></span>
+          </div>
+          <div class="col-md-12">
+            <span class="form-title"><%= f.label 'Surname *' %></span>
+            <span class="form-field pad-top-forms"><%= f.text_field :surname, required: true, :value => current_user.surname %></span>
+          </div>
+          <div class="col-md-12">
+            <span class="form-title"><%= f.label 'Date of Fix *' %></span>
+            <span class="form-field pad-top-forms"><%= f.date_field(:fix_date,required: true, :value => Date.today.try(:strftime, "%d/%m/%Y"))  %></span>
+          </div>
+          <div class="col-md-12">
+            <span class="form-title"><%= f.label 'Problem Description *' %></span>
+            <span class="pad-top-forms"><%= f.text_area :problem , required: true, rows: 5, class: "form-textarea" %></span>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="spacer"></div>
+          <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
+            <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Save Changes</span>
+          <% end %>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="spacer"></div>
+          <%= link_to (property_flat_mainhistory_path(@property,@mainhistory.flat_id, @mainhistory)), class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket", method: :delete , data: {confirm: "Are you sure?"} do %>
+            <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete Fix</span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="spacer"></div>
+  </div>
+  <div class="spacer"></div>

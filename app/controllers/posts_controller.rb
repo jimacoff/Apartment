@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 	before_action :find_property, only: [:destroy]
   def index
-    authorize! :read, Cpanel
+   
   	@user = User.find (params[:cpanel_id])
   	@properties = Property.where user_id: @user
   end

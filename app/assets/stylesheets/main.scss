@@ -13,6 +13,7 @@
     
     body {
         margin: 0;
+        background-color: $grey;
     }
     
     .margin0 {
@@ -104,6 +105,7 @@
         }
         .dropdown-menu {
             li {
+                text-align: center;
                 background-color: $dblue;
                 a {
                     color: $lblue;
@@ -178,7 +180,6 @@
     
     .prof-pic {
         padding-top: 10%;
-        padding-left: 3%;
     }
     
     .width100 {
@@ -414,6 +415,10 @@
         text-transform: uppercase;
     }
     
+    .capitalize2 {
+        text-transform: capitalize;
+    }
+    
     .sup-text {
         padding: 3em 2em;
     }
@@ -530,8 +535,13 @@
         }
     }
     
-    .test {
+    .file-input {
         input {
             font-size: 1.3em;
         }
+    }
+    
+    .check-box {
+        font-size: 1.5em;
+        margin-left: 1em;
     }
