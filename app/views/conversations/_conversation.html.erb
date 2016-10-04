@@ -1,30 +1,21 @@
+<div class="conversations">
+<div class="col-md-12  border-grey <%=if conversation.is_read?(current_user) == false then  'unread-mess' else 'bg-white ' end  %> "  >
+  <%= link_to  conversation_path(conversation) do %>
 
-<%= link_to  conversation_path(conversation) do %>
-<% if conversation.is_read?(current_user) == false then %>
-<div style="background-color:#EBE7E7">
-<% else %>
-<div>
-<% end %>
-  <div class="media">
-    <div class="media-left"> 
-    
-      <%= image_tag conversation.originator.avatar.small.url %>  
-     
+    <div class="spacer" id="conversation-box">
+      <div class="col-md-1">
+        <%= image_tag conversation.originator.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %>
+      </div>
+      <div class="col-md-11 ">
+        <span><b>From: </b></span><span class="capitalize2"><%= conversation.originator.name %>&nbsp<%= conversation.originator.surname %>&nbsp<%=  conversation.messages.last.created_at.strftime(" %b %d, %H:%M") %></span>
+        <div class="">
+          <div><b>Subject: </b><%= conversation.subject %></div>
+          <span><b>Last message from: </b></span><span class="capitalize2"><%= conversation.last_sender.name %> <%= conversation.last_sender.surname %></span>
+          <div class="spacer"></div>
+        </div>
+      </div>
     </div>
-    <div class="media-body">
-      <h4 class="media-heading">
-      
-        <%= conversation.originator.name %>&nbsp<%= conversation.originator.surname %> <br>
-   
-      <br />
-        <small><b>Subject: </b><%= conversation.subject %></small><br>
-        <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small><br />
-        <small><b>Last message from: </b><%= conversation.last_sender.name %> <%= conversation.last_sender.surname %></small><br />
-      </h4>
-     
-       
-    </div>
-  </div>
-  </div>
-<% end %>
-<br />
+  <% end %>
+
+</div>
+</div>

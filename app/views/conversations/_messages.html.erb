@@ -1,18 +1,15 @@
-<% @receipts.each do |receipt| %>
+<div class="row spacer">
+  <% @receipts.each do |receipt| %>
     <% message = receipt.message %>
-    <div class="media">
-      <div class="media-left">
-       
-        <a href="#">
-          <%= image_tag message.sender.avatar.small.url %> 
-        </a>
+    <div class="col-md-1"><%= image_tag message.sender.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %></div>
+    <div class="col-md-11">
+      <b><%= message.sender.name %>&nbsp <%= message.sender.surname %></b>&nbsp 
+        <%=  message.created_at.strftime("%b %d, %H:%M") %>
+      <div class="border-bot-dgrey">
+        <p id= "whiteboard-content" ><%= message.body %></p>
+        <div class="spacer"></div>
       </div>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= message.sender.name %> <%= message.sender.surname %> <br>
-          <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
-        </h4>
-        <%= message.body %>
-      </div>
+      <div class="spacer2"></div>
     </div>
-<% end %>
+  <% end %>
+</div>

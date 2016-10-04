@@ -1,46 +1,43 @@
-
-
-<div class="row">
-  <div class="spacer"></div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= render 'mailbox/folders' %>
+<p id="notice"><%= notice %></p>
+<div class="spacerem"></div>
+<div class="row bg-white margin-lr-0">
+  <div class="col-md-12 col-xs-12">
+    <div class=" row properties-nav nav-bg">
+      <div class="col-md-9 col-xs-12" >
+        <h2 class="h3white centr-title capitalize">Message #<%= conversation.id %> - <%= conversation.subject %></h2>
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <div class=" new-prop-btn text-center ">
+          <% if conversation.is_trashed?(current_user) %>
+            <%= link_to (untrash_conversation_path(conversation)), class:"btn btn-lg new-btn border0", method: :post do %>
+              <span class="glyphicon glyphicon-refresh"></span><span class="pad-r-1">Restore</span>
+            <% end %>
+          <% else %>
+            <%= link_to (trash_conversation_path(conversation)), class:"btn btn-lg new-btn border0" do %>
+              <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+  
+  <div class="col-md-10 col-md-offset-1">
+    <div class="spacer"></div>
+    <div class="col-md-12 ">
 
-  <div class="col-md-8">
-    <div class="panel panel-default">
-    <div class="row" style="padding-top:1%">
-    <div class="col-md-6">
-      <h4 style="padding-left:5%"><b>Subject: </b><%= conversation.subject %></h4>
+      <%= render partial: 'messages' %>
     </div>
-    <div class="col-md-6 text-right">
-    <div style="padding-right:5%">
-      <% if conversation.is_trashed?(current_user) %>
-          <%= link_to 'Restore conversation', untrash_conversation_path(conversation), class: 'btn btn-info', method: :post %>
-      <% else %>
-          <%= link_to 'Delete conversation', trash_conversation_path(conversation), class: 'btn btn-danger', method: :post,
-                      data: {confirm: 'Are you sure?'} %>
-      <% end %>
-      </div>
-    </div>
-    </div>
-      <div class="panel-body">
-        <%= render partial: 'messages' %>
-      </div>
-      <div class="panel-footer">
-        <!-- Reply Form -->
-        <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
-            <div class="form-group">
-              <%= f.text_area :body, placeholder: "Reply Message", rows: 4, class: "form-control" %>
+    <div class="col-md-12">
+      <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
+        <div class="col-md-12 bg-main spacer">
+            <div class="row  spacer">
+              <div class="col-md-1"><%= image_tag current_user.avatar.small_small.url, class: "border-radius-50" %></div>
+              <div class="col-md-11"><%= f.text_area :body, rows: "4", placeholder: "Add a reply...", class: "comment-box" %><br/>
+                <%= submit_tag "Reply", class: "btn nav-bg white border0 pull-right lblue-hover" %></div>
             </div>
-            <%= f.submit "Reply", class: 'btn btn-danger pull-right' %>
-        <% end %>
-        <div class="clearfix"></div>
-      </div>
+          </div>
+      <% end %>
     </div>
   </div>
-
 </div>

@@ -1,19 +1,21 @@
-<%= form_for :conversation,  url: :conversations, html: { class: "" } do |f| %>
-    <div class="form-group">
-      <%= f.label "To:" %>
-      <%= f.select :recipients, (User.all - [current_user]).collect {|p| [p.name + " " + p.surname, p.id ]  } , {}, { multiple: true , class: "chosen-it form-control" } %>
-
-      <%#= f.select :recipients, options_from_collection_for_select(User.all, :id, :name + :surname),{ multiple: true, class: "chosen-it form-control"} %>
-
+<div class="col-md-8 col-md-offset-2 spacer">
+  <%= form_for :conversation,  url: :conversations, html: { class: "" } do |f| %>
+    <div class="col-md-12">
+      <span class="form-title"><%= f.label 'To:' %></span>
+      <div class=" pad-top-forms "><%= f.select :recipients,(User.all - [current_user]).collect {|p| [p.name + " " + p.surname, p.id ]  } , {}, { multiple: true ,required: true, class: "chosen-it form-control" } %></div>
     </div>
-    <div class="form-group">
-      <%= f.label :subject %>
-      <%= f.text_field :subject, placeholder: "Subject", class: "form-control" %>
+    <div class="col-md-12">
+      <span class="form-title"><%= f.label 'Subject:' %></span>
+      <div class=" pad-top-forms messages-form"><%= f.text_field :subject, required: true %></div>
     </div>
-    <div class="form-group">
-      <%= f.label :message %>
-      <%= f.text_area :body, class: 'form-control',placeholder: "Type your message here", rows: 4  %>
+    <div class="col-md-12">
+      <span class="form-title"><%= f.label 'Message:' %></span>
+      <div class="pad-top-forms messages-form"><%= f.text_area :body, required: true, rows: 5, class: "form-textarea" %></div>
     </div>
-
-    <%= f.submit "Send Message", class: "btn btn-success" %>
-<% end %>
+    <div class="col-md-12 text-center">
+      <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
+        <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Send Message</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

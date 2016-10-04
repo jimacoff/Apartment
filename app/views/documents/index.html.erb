@@ -1,35 +1,56 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
-
-<br />
-
-<%= link_to "New Document", new_property_document_path, class: "btn btn-primary" %>
-<br />
-<br />
-
-<table class = "table table-bordered table-striped">
-   <thead>
-      <tr>
-         <th>Name</th>
-         <th>Download Link</th>
-         <th> </th>
-      </tr>
-   </thead>
-   
-   <tbody>
-      <% @documents.each do |document| %>
-         
-         <tr>
-            <td><%= document.name %></td>
+<p id="notice"><%= notice %></p>
+<div class="row bg-white margin-lr-0 ">
+  <div class="col-md-12 ">
+    <div class=" row properties-nav nav-bg ">
+      <div class="col-md-9" >
+        <h2 class="h3white centr-title">Documents</h2>
+      </div>
+      <div class="col-md-3">
+        <% if can? :create, Property%>
+          <div class="pull-right new-prop  ">
+            <%= link_to (new_property_document_path), class:"btn btn-lg new-btn border0" do %>
+              <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">New Document</span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div><% if @documents.size == 0 %>
+      <div class="text-center">
+        <h3 >No documents available!</h3>
+        <div class="spacer"></div>
+      </div>
+    <% else %>
+    
+      <div class="col-md-12 spacer">
+        <table class = "table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+               <th>Download Link</th>
+              <th class="text-center">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @documents.each do |document| %>
+              <tr>
+                <td><%= document.name %></td>
             <td><%= link_to "Download File", document.attachment_url %></td>
-         	<td><%= link_to 'Delete', property_document_path(@property, document), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete #{document.name}?"} %></td>
-         </tr>
-         
-      <% end %>
-   </tbody>
-   
-</table>
-<h3><%= link_to 'Back', property_path(@property) %></h3>
+            
+                <td class="text-center">
+                
+                <%= link_to (property_document_path(@property, document)), method: :delete, class: "btn nav-bg white border0 lblue-hover", data: {confirm: "Are you sure that you wish to delete #{document.name}?"} do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                
+              <% end %>
+              </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
+    <% end %>
+    <div class="spacer"></div>
+  </div>
+</div>
+<div class="spacer"></div>

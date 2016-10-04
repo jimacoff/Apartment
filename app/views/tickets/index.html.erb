@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div class="spacer"></div>
+<div class="spacerem"></div>
 <div class="row bg-white margin-lr-0 prop-img-cont">
   <div class="col-md-7 col-xs-12 padding-lr-0" id="prop-img" >
     <span class="property-img-show "> <img src="/assets/1.jpg"></span>
@@ -21,41 +21,34 @@
         <h2 class="h3white centr-title capitalize">Tickets</h2>
       </div>
       <div class="col-md-3 col-xs-12">
-       
-          <div class=" new-prop-btn text-center "><%= link_to (new_ticket_path), class:"btn btn-lg new-btn border0" do %>
-              <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">New Ticket</span>
-            <% end %>
-          </div>
-        
+        <div class=" new-prop-btn text-center "><%= link_to (new_ticket_path), class:"btn btn-lg new-btn border0" do %>
+            <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">New Ticket</span>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="spacerem"></div>
     <div class="row">
-    <div class="col-md-12">
-    <div class="col-md-12 tickets-nav">
-    <div class="spacerem"></div>
-      
-    <% if can? :read, Ticket %>
-    <%= link_to 'All', tickets_path, class:'btn btn-lg nav-btn border0  no-border border-bot' %>
-      
-      <%= link_to 'Complains', tickets_complain_path, class:  if @url.include?('complain') then  'btn btn-lg nav-btn border0 btn-default no-border border-bot' else 'btn btn-lg nav-btn border0 no-border' end %>
-      <%= link_to 'Maintenance', tickets_maintenance_path, class: if @url.include?('maintenance') then  'btn btn-lg nav-btn border0 btn-default no-border border-bot' else 'btn btn-lg nav-btn border0 no-border' end  %>
-      <%= link_to 'Other', tickets_other_path, class: if @url.include?('other') then  'btn btn-lg nav-btn border0 btn-default no-border border-bot' else 'btn btn-lg nav-btn border0 no-border' end  %>
-    <% end %>
-    <div class="spacerem"></div>
-    </div>
-    </div>
+      <div class="col-md-12">
+        <div class="col-md-12 tickets-nav">
+          <div class="spacerem"></div>
+          <% if can? :read, Ticket %>
+            <%= link_to 'All', tickets_path, class:'btn btn-lg nav-btn border0  no-border border-bot' %>
+            <%= link_to 'Complains', tickets_complain_path, class:  if @url.include?('complain') then  'btn btn-lg nav-btn border0 btn-default no-border border-bot' else 'btn btn-lg nav-btn border0 no-border' end %>
+            <%= link_to 'Maintenance', tickets_maintenance_path, class: if @url.include?('maintenance') then  'btn btn-lg nav-btn border0 btn-default no-border border-bot' else 'btn btn-lg nav-btn border0 no-border' end  %>
+            <%= link_to 'Other', tickets_other_path, class: if @url.include?('other') then  'btn btn-lg nav-btn border0 btn-default no-border border-bot' else 'btn btn-lg nav-btn border0 no-border' end  %>
+          <% end %>
+          <div class="spacerem"></div>
+        </div>
+      </div>
       <% if @tickets.size == 0 %>
         <div class="text-center">
-        
           <h3 >No tickets to show</h3>
           <div class="spacer"></div>
         </div>
       <% else %>
         <div class="col-md-12">
-
-    <div class="spacerem"></div>
-  
+          <div class="spacerem"></div>
           <table class = "table table-bordered table-striped">
             <thead>
               <tr >
@@ -66,39 +59,32 @@
                 <th>Surname</th>
                 <th>Section</th>
                 <th class="text-center">Status</th>
-                
               </tr>
             </thead>
             <tbody>
               <% @tickets.each do |ticket| %>
-                <% if can? :update, ticket %>
-                  <tr data-link="<%= ticket_path(ticket)%>">
-                    <td><%= ticket.created_at.try(:strftime, "%d/%m/%Y")  %>&nbsp <%= ticket.created_at.try(:strftime, "%H:%M")%></td>
-                    <td><%= ticket.address %></td>
-                    <td><%= ticket.flat_nr %></td>
-                    <td><%= ticket.name %></td>
-                    <td><%= ticket.surname %></td>
-                    <td><%= ticket.selection %></td>
-                    <%if ticket.status == false %>
-                    <td class="text-center" style="background-color:#E1FDC6"> 
-                        <b>Open</b>
-                        </td>
-                      <% else %>
-                      <td class="text-center" style="background-color:#F1B0B0">
-                        <b>Closed</b>
-                        </td>
-                      <% end %>
+                <tr data-link="<%= ticket_path(ticket)%>">
+                  <td><%= ticket.created_at.try(:strftime, "%d/%m/%Y")  %>&nbsp <%= ticket.created_at.try(:strftime, "%H:%M")%></td>
+                  <td><%= ticket.address %></td>
+                  <td><%= ticket.flat_nr %></td>
+                  <td><%= ticket.name %></td>
+                  <td><%= ticket.surname %></td>
+                  <td><%= ticket.selection %></td>
+                  <%if ticket.status == false %>
+                    <td class="text-center" style="background-color:#E1FDC6">
+                      <b>Open</b>
                     </td>
-                   
-                  </tr>
-                <% end %>
+                  <% else %>
+                    <td class="text-center" style="background-color:#F1B0B0">
+                      <b>Closed</b>
+                    </td>
+                  <% end %>
+                </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
-
-  
+</div>

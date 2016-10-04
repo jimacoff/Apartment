@@ -4,17 +4,17 @@ class MailboxController < ApplicationController
   
   def inbox
     @inbox = mailbox.inbox
-    @active = :inbox
+     @url = request.path_info
     
   end
 
   def sent
     @sent = mailbox.sentbox
-    @active = :sent
+     @url = request.path_info
   end
 
   def trash
     @trash = mailbox.trash
-    @active = :trash
+     @url = request.path_info
   end
 end

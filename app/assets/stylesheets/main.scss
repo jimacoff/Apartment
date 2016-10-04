@@ -107,6 +107,7 @@
             li {
                 text-align: center;
                 background-color: $dblue;
+                font-size: 1.2em;
                 a {
                     color: $lblue;
                 }
@@ -325,6 +326,10 @@
         margin-bottom: 4%;
     }
     
+    .spacerbot {
+        margin-bottom: 2%;
+    }
+    
     .padbot0 {
         bottom: 0;
         width: 100%;
@@ -488,6 +493,10 @@
         float: right;
     }
     
+    .messages-form {
+        font-size: 1.3em;
+    }
+    
     .form-field-select {
         font-size: 1em;
         select {
@@ -544,4 +553,25 @@
     .check-box {
         font-size: 1.5em;
         margin-left: 1em;
+    }
+    
+    .unread {
+        margin-left: 1em;
+    }
+    
+    #image-comment {
+        margin-top: 0.5em;
+    }
+    
+    .conversations {
+        a {
+            color: inherit;
+        }
+        :hover {
+            background-color: $grey;
+        }
+    }
+    
+    .unread-mess {
+        background-color: $dgrey;
     }
