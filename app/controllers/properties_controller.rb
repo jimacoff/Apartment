@@ -23,7 +23,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1/edit
   def edit
-     authorize! :update, @property
+     
   end
 
  
