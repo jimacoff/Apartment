@@ -30,10 +30,10 @@
             <% @flats.each do |flat| %>
               <tr data-link="<%= property_flat_path(flat.property_id,flat)%>">
                 <td><%= flat.property_id %></td>
-                <td><%= flat.housenr %></td>
-                <td><%= flat.flat_nr %></td>
-                <td><%= flat.name %></td>
-                <td><%= flat.surname %></td>
+                <td ><%= flat.housenr %></td>
+                <td class="capitalize"><%= flat.flat_nr %></td>
+                <td class="capitalize2"><%= flat.name %></td>
+                <td class="capitalize2"><%= flat.surname %></td>
                 <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
                 <td><%= flat.status %></td>
               </tr>

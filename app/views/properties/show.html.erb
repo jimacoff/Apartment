@@ -18,27 +18,37 @@
       <div class="col-md-12 col-xs-12">
         <div class="row prop-box-2">
           <div class="col-md-4 col-xs-4 text-center">
-            <h4><%= image_tag @property.user.avatar.small_small.url, class: "border-radius-50" %></h4>
+            <% if @property.user.try(:avatar) == nil then %>
+              <%= image_tag "/assets/fallback/small_small_avatar.png", class: "border-radius-50" %>
+            <% else %>
+              <h4><%= image_tag @property.user.avatar.small_small.url, class: "border-radius-50" %></h4>
+            <% end %>
           </div>
           <div class="col-md-8 col-xs-8">
             <h4>Property owned by: <br>
-               <b class="capitalize2"><%= @property.name %> <%= @property.surname %></b></h4>
+              <b class="capitalize2"><%= @property.name %> <%= @property.surname %></b></h4>
           </div>
         </div>
       </div>
     </div>
     <div class="row nav-bg padbot0 ">
       <div class="col-md-6 col-xs-6">
-        <div class=" new-prop-btn  prop-btns text-center"><%= link_to (edit_property_path(@property)), class:"btn btn-lg new-btn border0" do %>
-            <span class="glyphicon glyphicon-pencil"></span><span class="pad-r-1">Edit</span>
-          <% end %>
-        </div>
+        <% if can? :update, @property %>
+          <div class=" new-prop-btn  prop-btns text-center"><%= link_to (edit_property_path(@property)), class:"btn btn-lg new-btn border0" do %>
+              <span class="glyphicon glyphicon-pencil"></span><span class="pad-r-1">Edit</span>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="title-height"></div>
+        <% end %>
       </div>
       <div class="col-md-6 col-xs-6">
-        <div class=" new-prop-btn  prop-btns text-center"><%= link_to property_path, method: :delete, class:"btn btn-lg new-btn border0", data: {confirm: "Are you sure?"} do %>
-            <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
-          <% end %>
-        </div>
+        <% if can? :update, @property %>
+          <div class=" new-prop-btn  prop-btns text-center"><%= link_to property_path, method: :delete, class:"btn btn-lg new-btn border0", data: {confirm: "Are you sure?"} do %>
+              <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -52,6 +62,7 @@
         <h2 class="h3white centr-title">FLATS</h2>
       </div>
       <div class="col-md-3 col-xs-12">
+
         <% if can? :read, Property%>
           <div class=" new-prop-btn text-center"><%= link_to (property_documents_path(@property)), class:"btn btn-lg new-btn border0" do %>
               <span class="glyphicon glyphicon-folder-open"></span><span class="pad-r-1">Property Documents</span>
@@ -60,7 +71,7 @@
         <% end %>
       </div>
       <div class="col-md-3 col-xs-12">
-        <% if can? :read, Property%>
+        <% if can? :create, Flat %>
           <div class=" new-prop-btn text-center "><%= link_to (new_property_flat_path(@property)), class:"btn btn-lg new-btn border0" do %>
               <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">Add New Flat</span>
             <% end %>
@@ -76,7 +87,11 @@
           <div class="spacer"></div>
         </div>
       <% else %>
+      <% if can? :update, @property %>
         <div class="col-md-10 pad-r-0">
+        <% else %>
+        <div class="col-md-12">
+        <% end %>
           <table class = "table table-bordered table-striped">
             <thead>
               <tr>
@@ -90,18 +105,31 @@
             </thead>
             <tbody>
               <% @property.flats.each do |flat| %>
-                <tr data-link="<%= property_flat_path(flat.property_id,flat)%>">
-                  <td><%= flat.housenr %></td>
-                  <td><%= flat.flat_nr %></td>
-                  <td><%= flat.name %></td>
-                  <td><%= flat.surname %></td>
-                  <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
-                  <td><%= flat.status %></td>
-                </tr>
+                <% if can? :update, flat %>
+                  <tr data-link="<%= property_flat_path(flat.property_id,flat)%>">
+                    <td><%= flat.housenr %></td>
+                    <td class="capitalize"><%= flat.flat_nr %></td>
+                    <td class="capitalize2"><%= flat.name %></td>
+                    <td class="capitalize2"><%= flat.surname %></td>
+                    <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
+                    <td><%= flat.status %></td>
+                  </tr>
+                <% else %>
+                  <tr>
+                    <td><%= flat.housenr %></td>
+                    <td class="capitalize"><%= flat.flat_nr %></td>
+                    <td class="capitalize2"><%= flat.name %></td>
+                    <td class="capitalize2"><%= flat.surname %></td>
+                    <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
+                    <td><%= flat.status %></td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>
         </div>
+        
+        <% if can? :update, @property %>
         <div class="col-md-2 pad-l-0 text-center " >
           <table class = "table table-bordered table-striped">
             <thead>
@@ -115,60 +143,60 @@
                   <td style="padding:0;">
                     <div class="row " >
                       <div class="col-md-12 flat-edit-btn padding-lr-0" >
-                        <% if can? :update, flat%>
+                        
                           <%= link_to (edit_property_flat_path(flat.property_id, flat)), class: "btn nav-bg white border0 lblue-hover" do %>
                             <span class="glyphicon glyphicon-pencil"></span>
                           <% end %>
-                        <% end %>
-                        <% if can? :destroy, flat%>
+                       
                           <%= link_to (property_flat_path(flat.property_id, flat)), method: :delete, class: "btn nav-bg white border0 lblue-hover", data: {confirm: "Are you sure?"} do %>
                             <span class="glyphicon glyphicon-trash"></span>
                           <% end %>
-                        <% end %>
+                        
                       </div>
                     </div>
                   </td>
                 </tr>
               <% end %>
-            </div>
-          <% end %>
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+      <% end %>
     </div>
   </div>
 </div>
-<div class="spacer">
-  <div class="row bg-white margin-lr-0">
-    <div class="col-md-12 col-xs-12">
-      <div class=" row properties-nav nav-bg">
-        <div class="col-md-12 col-xs-12" >
-          <h2 class="h3white centr-title">WHITEBOARD</h2>
-        </div>
+<div class="spacer"></div>
+<div class="row bg-white margin-lr-0">
+  <div class="col-md-12 col-xs-12">
+    <div class=" row properties-nav nav-bg">
+      <div class="col-md-12 col-xs-12" >
+        <h2 class="h3white centr-title">WHITEBOARD</h2>
       </div>
     </div>
-    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
-    <div class="spacer"></div>
-      <% if @property.whiteboards.size > 3 %>
-        <div class="col-md-12" style="height:50vh; overflow:auto;">
-          <%= render @property.whiteboards %>
-        </div>
-      <% else%>
-        <div class="col-md-12">
-          <%= render @property.whiteboards %>
-        </div>
-      <% end %>
-      <br />
-      <% if can? :update, @property%>
-        <%= form_for ([@property, @property.whiteboards.build]) do |f| %>
-          <div class="col-md-12 bg-main spacer">
-            <div class="row  spacer">
-              <div class="col-md-1"><%= image_tag current_user.avatar.small_small.url, class: "border-radius-50" %></div>
-              <div class="col-md-11"><%= f.text_area :content, rows: "3", placeholder: "Add a comment...", class: "comment-box" %><br/>
-                <%= submit_tag "Comment", class: "btn nav-bg white border0 pull-right lblue-hover" %></div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-      <div class="spacer"></div>
-    </div>
   </div>
+  <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+    <div class="spacer"></div>
+    <% if @property.whiteboards.size > 3 %>
+      <div class="col-md-12" style="height:50vh; overflow:auto;">
+        <%= render @property.whiteboards %>
+      </div>
+    <% else%>
+      <div class="col-md-12">
+        <%= render @property.whiteboards %>
+      </div>
+    <% end %>
+    <br />
+    <% if can? :create, Flat%>
+      <%= form_for ([@property, @property.whiteboards.build]) do |f| %>
+        <div class="col-md-12 bg-main spacer">
+          <div class="row  spacer">
+            <div class="col-md-1"><%= image_tag current_user.avatar.small_small.url, class: "border-radius-50" %></div>
+            <div class="col-md-11"><%= f.text_area :content, rows: "3", placeholder: "Add a comment...", class: "comment-box" %><br/>
+              <%= submit_tag "Comment", class: "btn nav-bg white border0 pull-right lblue-hover" %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="spacer"></div>
+  </div>
+</div>

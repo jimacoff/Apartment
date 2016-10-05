@@ -11,11 +11,12 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   # GET /properties/1.json
   def show
-  
+    authorize! :read, Property
   end
 
   # GET /properties/new
   def new
+    authorize! :create, Property
     @property = Property.new
   end
 
@@ -23,7 +24,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1/edit
   def edit
-     
+     authorize! :update, @property
   end
 
  

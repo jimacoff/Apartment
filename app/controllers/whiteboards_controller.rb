@@ -16,7 +16,7 @@ class WhiteboardsController < ApplicationController
 	end
 
 	def edit
-			
+			 authorize! :update, @whiteboard
 	end
 
 	def update

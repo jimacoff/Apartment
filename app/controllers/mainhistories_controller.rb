@@ -4,9 +4,11 @@ class MainhistoriesController < ApplicationController
 	before_action :find_property, only: [:new, :create, :edit, :update, :destroy]
 	
 	def new
+		authorize! :update, @flat
 		@mainhistory = Mainhistory.new	
 	end
 	def create 
+		
 		@mainhistory = @flat.mainhistories.build(mainhistories_params)
 		@mainhistory.save
 		redirect_to property_flat_path(@property,@flat)

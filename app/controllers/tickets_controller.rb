@@ -11,25 +11,29 @@ class TicketsController < ApplicationController
   end
 
   def complain
+    authorize! :update, @ticket
   	@tickets = Ticket.where selection: 'complain'
     @url = request.path_info
   end
 
   def maintenance
+    authorize! :update, @ticket
   	@tickets = Ticket.where selection: 'maintenance'
     @url = request.path_info
   end
 
   def other
+    authorize! :update, @ticket
   	@tickets = Ticket.where selection: 'other'
     @url = request.path_info
   end
 
   def edit
+    authorize! :update, @ticket
   end
 
   def new
-  
+    
     if @flat = Flat.find_by_id(params[:flat_id]) == nil
     
       

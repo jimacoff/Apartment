@@ -16,7 +16,7 @@
         <% end %>
       </div>
       <div class="col-md-2 col-xs-12">
-        <% if can? :update, @flat%>
+        <% if can? :update, @ticket%>
           <div class=" new-prop-btn text-center "><%= link_to ticket_path, method: :delete, class:"btn btn-lg new-btn border0" do %>
               <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
             <% end %>
@@ -26,7 +26,7 @@
     </div>
     <div class="spacer"></div>
     <div style="margin-bottom:1%">
-      Created by <b><%= current_user.name %> &nbsp <%= current_user.surname %></b> &nbsp 
+      Created by <span class="capitalize2"><b><%= current_user.name %> &nbsp <%= current_user.surname %></b></span> &nbsp 
 	   <%= time_ago_in_words(@ticket.created_at) %> ago 
 	</div>
     <div class="spacer"></div>
@@ -62,11 +62,11 @@
           <tbody>
             <tr>
               <th>Name</th>
-              <td><%= @ticket.name %></td>
+              <td class="capitalize2"><%= @ticket.name %></td>
             </tr>
             <tr>
               <th>Surname</th>
-              <td><%= @ticket.surname %></td>
+              <td class="capitalize2"><%= @ticket.surname %></td>
             </tr>
             <tr>
               <th>Phone</th>
@@ -74,7 +74,7 @@
             </tr>
             <tr>
               <th>Email</th>
-              <td><%= @ticket.user.email %></td>
+              <td><%= @ticket.email %></td>
             </tr>
           </tbody>
         </table>
@@ -85,11 +85,11 @@
           <tbody>
             <tr>
               <th>Address</th>
-              <td><%= @ticket.address %></td>
+              <td class="capitalize2"><%= @ticket.address %></td>
             </tr>
             <tr>
               <th>Flat Nr.</th>
-              <td><%= @ticket.flat_nr %></td>
+              <td class="capitalize"><%= @ticket.flat_nr %></td>
             </tr>
           </tbody>
         </table>
@@ -147,14 +147,18 @@
   <div class="spacer"></div>
   <div class="col-md-12 col-lg-12 text-center" id="contact-sup">
   
-    <% if can? :manage, Ticket%>
+    <% if can? :update, @ticket%>
       <% if @ticket.status == false %>
+      <div class="text-center ticket-btn">
+      <span class="ticket-txt ">If you are happy with answer click </span>
         <%= link_to (flop_ticket_path(@ticket)),class: "btn btn-lg nav-bg new-btn white border0 lblue-hover" do %>
           <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Close Ticket</span>
         <% end %>
+      
+      </div>
       <% end %>
     <% end %>
-    <% if can? :manage, Ticket%>
+    <% if can? :update, @ticket%>
       <% if @ticket.status == true %>
       <div class="text-center ticket-btn">
         <span class="ticket-txt">This ticket has been closed!<br/> Click </span>

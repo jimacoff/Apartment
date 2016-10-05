@@ -62,7 +62,7 @@
                     <span class="glyphicon glyphicon-th-large"></span><span>MY FLATS</span>
                   <% end %>
                 </li>
-                <% if can? :read, Cpanel%>
+                <% if can? :create, Ticket%>
                   <li class="<%= 'active' if params[:controller] == 'tickets' && %w(index show new edit other maintenance complain).include?(params[:action]) %>">
                     <%= link_to (tickets_path) do %>
                       <span class="glyphicon glyphicon-headphones"></span><span>TICKETS</span>

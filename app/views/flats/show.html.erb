@@ -20,10 +20,10 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @property.housename %></td>
-          <td><%= @property.address %></td>
-          <td><%= @property.zipcode %> <%= @property.city %></td>
-          <td><%= @property.name %> <%= @property.surname %></td>
+          <td class="capitalize2"><%= @property.housename %></td>
+          <td class="capitalize2"><%= @property.address %></td>
+          <td class="capitalize2"><%= @property.zipcode %> <%= @property.city %></td>
+          <td class="capitalize2"><%= @property.name %> <%= @property.surname %></td>
         </tr>
       </tbody>
     </table>
@@ -66,15 +66,15 @@
             <tbody>
               <tr>
                 <th>Name</th>
-                <td><%= @flat.name %></td>
+                <td class="capitalize2"><%= @flat.name %></td>
               </tr>
               <tr>
                 <th>Surname</th>
-                <td><%= @flat.surname %></td>
+                <td class="capitalize2"><%= @flat.surname %></td>
               </tr>
               <tr>
                 <th>Date of Birth</th>
-                <td><%= @flat.name %></td>
+                <td >Not implemented!</td>
               </tr>
             </tbody>
           </table>
@@ -115,11 +115,11 @@
               <tbody>
                 <tr>
                   <th>House name.</th>
-                  <td><%= @flat.housenr %></td>
+                  <td class="capitalize2"><%= @flat.housenr %></td>
                 </tr>
                 <tr>
                   <th>Flat Nr.</th>
-                  <td><%= @flat.flat_nr %></td>
+                  <td class="capitalize"><%= @flat.flat_nr %></td>
                 </tr>
                 <tr>
                   <th>Flat Status</th>
@@ -144,15 +144,15 @@
               <tbody>
                 <tr>
                   <th>Relatives</th>
-                  <td><%= @flat.relatives %></td>
+                  <td class="capitalize2"><%= @flat.relatives %></td>
                 </tr>
                 <tr>
                   <th>Caretaker</th>
-                  <td><%= @flat.caretaker %></td>
+                  <td class="capitalize2"><%= @flat.caretaker %></td>
                 </tr>
                 <tr>
                   <th>More Persons</th>
-                  <td><%= @flat.morepersons %></td>
+                  <td class="capitalize2"><%= @flat.morepersons %></td>
                 </tr>
                 <tr>
                   <th>Description</th>
@@ -191,8 +191,8 @@
       <tbody>
         <% @flat.ownerhistories.each do |ownerhistory| %>
           <tr>
-            <td><%= ownerhistory.name %></td>
-            <td><%= ownerhistory.surname %></td>
+            <td class="capitalize2"><%= ownerhistory.name %></td>
+            <td class="capitalize2"><%= ownerhistory.surname %></td>
             <td><%= ownerhistory.email %></td>
             <td><%= ownerhistory.move_in_date.try(:strftime, "%d-%m-%Y") %></td>
             <td><%= ownerhistory.move_out_date.try(:strftime, "%d-%m-%Y") %></td>
@@ -277,8 +277,8 @@
         <% @flat.mainhistories.each do |mainhistory| %>
           <tr>
             <td style="width:60%"><%= mainhistory.problem %></td>
-            <td><%= mainhistory.name %></td>
-            <td><%= mainhistory.surname %></td>
+            <td class="capitalize2"><%= mainhistory.name %></td>
+            <td class="capitalize2"<%= mainhistory.surname %></td>
             <td><%= mainhistory.fix_date.try(:strftime, "%d/%m/%Y") %></td>
             <td class="text-center"><% if can? :update, @flat%>
                 <%= link_to (edit_property_flat_mainhistory_path(@property,@flat,mainhistory)), class: "btn nav-bg white border0 lblue-hover" do %>

@@ -1,10 +1,18 @@
 <div class="row spacer"></div>
-<div class="col-md-1"><%= image_tag reply.user.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %>
+<div class="col-md-1"><% if reply.user.try(:avatar) == nil then %>
+    <%= image_tag "/assets/fallback/small_small_avatar.png", class: "border-radius-50", id: "image-comment"  %></span>
+<% else %>
+  <%= image_tag reply.user.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %>
+<% end %>
 </div>
 <div class="col-md-11">
-  <b><%= reply.user.name %>&nbsp<%= reply.user.surname %></b>&nbsp 
-	      <%= time_ago_in_words(reply.created_at) %> ago 
-	      
+  <span class="capitalize2">
+    <% if reply.user.try(:name) || reply.user.try(:surname) == nil then %>
+      <b>Deleted User</b>
+    <% else %>
+      <b><%= reply.user.name %>&nbsp<%= reply.user.surname %></b></span>&nbsp 
+        <%= time_ago_in_words(reply.created_at) %> ago 
+       <% end %>
   <div class="border-bot-dgrey">
     <p id= "whiteboard-content "  ><%= reply.content %></p>
     <% if @ticket.status == false %>

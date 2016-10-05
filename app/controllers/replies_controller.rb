@@ -3,6 +3,7 @@ class RepliesController < ApplicationController
 	before_action :find_reply, only: [ :edit, :update, :destroy]
 	
 	def create 
+
 		@reply = @ticket.replies.build(replies_params)
 		@reply.user = current_user
 		@reply.save
@@ -16,7 +17,7 @@ class RepliesController < ApplicationController
 	end
 
 	def edit
-			
+		authorize! :update, @reply
 	end
 
 	def update

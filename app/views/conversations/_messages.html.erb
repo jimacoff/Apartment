@@ -3,7 +3,7 @@
     <% message = receipt.message %>
     <div class="col-md-1"><%= image_tag message.sender.avatar.small_small.url, class: "border-radius-50", id: "image-comment" %></div>
     <div class="col-md-11">
-      <b><%= message.sender.name %>&nbsp <%= message.sender.surname %></b>&nbsp 
+      <span class="capitalize2"><b><%= message.sender.name %>&nbsp <%= message.sender.surname %></b></span>&nbsp 
         <%=  message.created_at.strftime("%b %d, %H:%M") %>
       <div class="border-bot-dgrey">
         <p id= "whiteboard-content" ><%= message.body %></p>

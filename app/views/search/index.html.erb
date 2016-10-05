@@ -1,145 +1,108 @@
 <% unless @properties.any? || @flats.any? %>
-<h3>No records found for <%= params[:search] %></h3>
+  <h3>No records found for <%= params[:search] %></h3>
 <% end %>
 <div class="spacer"></div>
 <% if @properties.any? %>
-<p id="notice"><%= notice %></p>
-<div class="row bg-white margin-lr-0 ">
-  <div class="col-md-12 ">
-    <div class=" row properties-nav nav-bg ">
-      <div class="col-md-9" >
-        <h2 class="h3white centr-title">MY PROPERTIES</h2>
+  <p id="notice"><%= notice %></p>
+  <div class="row bg-white margin-lr-0 ">
+    <div class="col-md-12 ">
+      <div class=" row properties-nav nav-bg ">
+        <div class="col-md-9" >
+          <h2 class="h3white centr-title">PROPERTIES</h2>
+        </div>
+        <div class="col-md-3">
+          
+        </div>
       </div>
-      <div class="col-md-3">
-        <% if can? :create, Property%>
-          <div class="pull-right new-prop  ">
-            <%= link_to (new_property_path), class:"btn btn-lg new-btn border0" do %>
-              <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">Add New Property</span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div id="houses" class="row overflow">
-      <% @properties.each do |property| %>
-        <div class="spacer"></div>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 spacerem prop-img-cont-small">
-          <div class="border-dgrey">
-            <div class="img-responsive " id="prop-img-small"><span class="prop-user-avatar pull-right "> <%= image_tag property.user.avatar.small_small.url, class: "border-radius-50 thumb-border" %></span>
-              <%= link_to property_path(property) do %>
-                <span class="property-img-show "><%= image_tag property.property_image.small.url %></span>
-              <% end %>
-            </div>
-            <div class="property-house  text-center nav-bg white">
-              <h4><%= property.housename%></h4>
-            </div>
-            <div class="row  margin-lr-0">
-              <div class="col-md-12" id="prop-text-small">
-                <div class="text-left">
-                  <h5><span class="glyphicon glyphicon-home dblue"></span><span><%= property.address %></span></h5>
-                </div>
-                <div class="text-left ">
-                  <h5><span class="glyphicon glyphicon-globe dblue"></span><span><%= property.zipcode %> <%= property.city %></span></h5>
+      <div id="houses" class="row overflow">
+        <% @properties.each do |property| %>
+          <div class="spacer"></div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 spacerem prop-img-cont-small">
+            <div class="border-dgrey">
+              <div class="img-responsive " id="prop-img-small"><span class="prop-user-avatar pull-right "> <% if property.user.try(:avatar) == nil then %>
+                  <%= image_tag "/assets/fallback/small_small_avatar.png", class: "border-radius-50 thumb-border" %></span>
+                <% else %>
+                  <%= image_tag property.user.avatar.small_small.url, class: "border-radius-50 thumb-border" %></span>
+              <% end %></span>
+                <%= link_to property_path(property) do %>
+                  <span class="property-img-show "><%= image_tag property.property_image.small.url %></span>
+                <% end %>
+              </div>
+              <div class="property-house  text-center nav-bg white">
+                <h4 class="capitalize2"><%= property.housename%></h4>
+              </div>
+              <div class="row  margin-lr-0">
+                <div class="col-md-12" id="prop-text-small">
+                  <div class="text-left">
+                    <h5><span class="glyphicon glyphicon-home dblue"></span><span class="capitalize2"><%= property.address %></span></h5>
+                  </div>
+                  <div class="text-left ">
+                    <h5><span class="glyphicon glyphicon-globe dblue"></span><span><%= property.zipcode %></span> <span class="capitalize2"><%= property.city %></span></h5>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="spacer"></div>
-      <% end %>
+          <div class="spacer"></div>
+        <% end %>
+      </div>
+      <div class="spacer"></div>
     </div>
-    <div class="spacer"></div>
   </div>
-</div>
-<div class="spacer"></div>
+  <div class="spacer"></div>
 <% end %>
 <div class="spacer"></div>
 <% if @flats.any? %>
-<div class="row bg-white margin-lr-0">
-   <div class="col-md-12 col-xs-12">
-      <div class=" row properties-nav nav-bg">       
-            <div class="col-md-12 col-xs-12" >
-               <h2 class="h3white centr-title">FLATS</h2>  
-            </div>             
+  <div class="row bg-white margin-lr-0">
+    <div class="col-md-12 col-xs-12">
+      <div class=" row properties-nav nav-bg">
+        <div class="col-md-12 col-xs-12" >
+          <h2 class="h3white centr-title">FLATS</h2>
+        </div>
       </div>
       <div class="spacerem"></div>
-      <div class="row">  
-        
-        <div class="col-md-10 pad-r-0">
-          <table class = "table table-bordered table-striped">
-            <thead>
-              <tr>   
-                 <th>House Nr.</th>  
-                 <th>Flat Nr.</th>
-                 <th>Name</th>
-                 <th>Surname</th>
-                 <th>Move in Date</th>
-                 <th>Staus</th>
-                
-
-                   
-              </tr>
-            </thead>
-            <tbody>
-              <% @flats.each do |flat| %>      
-                
-                <tr data-link="<%= property_flat_path(flat.property_id,flat)%>">
-                  <td><%= flat.housenr %></td>
-                  <td><%= flat.flat_nr %></td>
-                  <td><%= flat.name %></td>
-                  <td><%= flat.surname %></td>
-                  <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
-                  <td><%= flat.status %></td>
-                </tr> 
-                
-                <% end %>
-               
-              
-            </tbody>  
-          </table>
-          </div>
-          <div class="col-md-2 pad-l-0 text-center " >
+      <div class="row">
+        <div class="col-md-12">
           <table class = "table table-bordered table-striped">
             <thead>
               <tr>
-                <th class="text-center">Edit</th>
+                <th>House Nr.</th>
+                <th>Flat Nr.</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Move in Date</th>
+                <th>Staus</th>
               </tr>
             </thead>
             <tbody>
-               <% @flats.each do |flat| %> 
-
-                  <tr><td style="padding:0;">
-                  <div class="row " >
-
-                  <div class="col-md-12 flat-edit-btn padding-lr-0" >
-                   <% if can? :update, flat%>
-                      <%= link_to (edit_property_flat_path(flat.property_id, flat)), class: "btn nav-bg white border0 lblue-hover" do %>
-                   <span class="glyphicon glyphicon-pencil"></span>
-                  <% end %> 
-                   
-                   <% end %>
-                   
-                   
-                  <% if can? :destroy, flat%>   
-                      <%= link_to (property_flat_path(flat.property_id, flat)), method: :delete, class: "btn nav-bg white border0 lblue-hover", data: {confirm: "Are you sure?"} do %>
-                      <span class="glyphicon glyphicon-trash"></span>
-
-                      <% end %> 
-                          
-                  <% end %>
-                  </div>
-                  </div>
-                  </td></tr>
-                  
-          <% end %>
-          </div>
-        
-       
+              <% @flats.each do |flat| %>
+               <% if can? :update, flat%>
+                <tr data-link="<%= property_flat_path(flat.property_id,flat)%>">
+                  <td><%= flat.housenr %></td>
+                  <td class="capitalize"><%= flat.flat_nr %></td>
+                  <td class="capitalize2"><%= flat.name %></td>
+                  <td class="capitalize2"><%= flat.surname %></td>
+                  <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
+                  <td><%= flat.status %></td>
+                </tr>
+                <% else %>
+                
+                <tr>
+                  <td><%= flat.housenr %></td>
+                  <td class="capitalize"><%= flat.flat_nr %></td>
+                  <td class="capitalize2"><%= flat.name %></td>
+                  <td class="capitalize2"><%= flat.surname %></td>
+                  <td><%= flat.join_date.try(:strftime, "%d/%m/%Y") %></td>
+                  <td><%= flat.status %></td>
+                </tr>
+              <% end %>
+              <% end %>
             </tbody>
           </table>
-          </div>
+        </div>
+        
           
       </div>
-   </div>
-</div>
- <% end %>
+    </div>
+  </div>
+<% end %>

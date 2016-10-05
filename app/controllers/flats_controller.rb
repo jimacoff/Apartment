@@ -24,14 +24,13 @@ class FlatsController < ApplicationController
   end
 
   def destroy
+
     @flat = Flat.find(params[:id]).destroy
     redirect_to property_path(@flat.property_id), notice: "Flat nr: #{@flat.flat_nr} has been deleted."
   end
 
   def show
     authorize! :read, Flat
-    
-   
   end
   
   def edit

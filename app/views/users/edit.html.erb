@@ -1,34 +1,54 @@
-
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
-<h1>Editing User</h1>
-
-<%= form_for @user do |f| %>
-	<div class="row">
-		<div class="col-md-6 col-lg-6">
-			<div><%= f.label :name %>
-		        <%= f.text_field :name, autofocus: true %></div>
-		    <div><%= f.label :surname %>
-		        <%= f.text_field :surname, autofocus: true %></div>
-		    <div><%= f.label :email %>
-		        <%= f.email_field :email %></div>
-		    <br/><br/>
-		    <div><%= f.label :User_Role %>
-		    	
-			    <%= f.select :role_id  do %>
-			       <% [['Registered', 1],['Admin', 2], ['Property Owner', 3],['Flat Owner', 4],['Support', 5]].each do |c| %>
-			          <%= content_tag(:option, c.first, value: c.last)  %>
-			       <% end %>
-			    <% end %>              
-		    </div>
-
-		</div>
-	    <div class="col-md-4 col-md-offset-4">
-	    <%= f.submit "Save changes" %>  
-		</div>
-	</div>
-<% end -%>
-
+<div class="spacer"></div>
+<div class="row bg-white margin-lr-0 ">
+  <div class="col-md-12 ">
+    <div class=" row properties-nav nav-bg ">
+      <div class="col-md-12" >
+        <h2 class="h3white centr-title capitalize">Edit User</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="spacer"></div>
+    <%= form_for @user do |f| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-lg-6">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Name *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :name, required: true%></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Surname *' %></span>
+              <span class="form-field pad-top-forms"><%= f.text_field :surname, required: true %></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'Email *' %></span>
+              <span class="form-field pad-top-forms"><%= f.email_field :email, required: true %></span>
+            </div>
+            <div class="col-md-12">
+              <span class="form-title"><%= f.label 'User Role' %></span>
+              <span class="form-field pad-top-forms"><%= f.select :role_id do %>
+                  <% [['Registered', 1],['Admin', 2], ['Property Owner', 3],['Flat Owner', 4],['Support', 5]].each do |c| %>
+                    <%= content_tag(:option, c.first, value: c.last)  %></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer2"></div>
+      <div class="col-md-12 text-center spacerem">
+        <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
+          <span class="glyphicon glyphicon-send"></span><span class="pad-r-1">Save Changes</span>
+        <% end %>
+      </div>
+      <div class="col-md-12 text-center ">
+        <%= link_to (cpanel_path(@user)), class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket", method: :delete, data: {confirm: "Are you sure?"} do %>
+          <span class="glyphicon glyphicon-warning-sign"></span><span class="pad-r-1">Delete User!</span>
+        <% end %>
+        <div class="spacer"></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="spacer"></div>

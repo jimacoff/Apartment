@@ -25,21 +25,25 @@
         <div class="spacer"></div>
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 spacerem prop-img-cont-small">
           <div class="border-dgrey">
-            <div class="img-responsive " id="prop-img-small"><span class="prop-user-avatar pull-right "> <%= image_tag property.user.avatar.small_small.url, class: "border-radius-50 thumb-border" %></span>
+            <div class="img-responsive " id="prop-img-small"><span class="prop-user-avatar pull-right "> <% if property.user.try(:avatar) == nil then %>
+                  <%= image_tag "/assets/fallback/small_small_avatar.png", class: "border-radius-50 thumb-border" %></span>
+                <% else %>
+                  <%= image_tag property.user.avatar.small_small.url, class: "border-radius-50 thumb-border" %></span>
+              <% end %></span>
               <%= link_to property_path(property) do %>
                 <span class="property-img-show "><%= image_tag property.property_image.small.url %></span>
               <% end %>
             </div>
             <div class="property-house  text-center nav-bg white">
-              <h4><%= property.housename%></h4>
+              <h4 class="capitalize2"><%= property.housename%></h4>
             </div>
             <div class="row  margin-lr-0">
               <div class="col-md-12" id="prop-text-small">
                 <div class="text-left">
-                  <h5><span class="glyphicon glyphicon-home dblue"></span><span><%= property.address %></span></h5>
+                  <h5><span class="glyphicon glyphicon-home dblue"></span><span class="capitalize2"><%= property.address %></span></h5>
                 </div>
                 <div class="text-left ">
-                  <h5><span class="glyphicon glyphicon-globe dblue"></span><span><%= property.zipcode %> <%= property.city %></span></h5>
+                  <h5><span class="glyphicon glyphicon-globe dblue"></span><span><%= property.zipcode %></span> <span class="capitalize2"><%= property.city %></span></h5>
                 </div>
               </div>
             </div>

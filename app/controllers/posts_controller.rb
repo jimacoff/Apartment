@@ -7,12 +7,15 @@ class PostsController < ApplicationController
   end
 
   def new
+    authorize! :create, @property
   end
 
   def edit
+    authorize! :update, @property
   end
 
   def destroy
+    authorize! :destroy, @property
   	@property.destroy
   	redirect_to cpanel_posts_path
   end

@@ -34,12 +34,16 @@ class Ability
         can :destroy, Reply do |reply|
             reply.user == user
         end
+         can :update, Whiteboard do |whiteboard|
+            whiteboard.user == user
+        end
+        can :destroy, Whiteboard do |whiteboard|
+            whiteboard.user == user
+        end
 
         
         can :read, Property
         can :read, Flat
-        
-
         can :create, Ticket
         can :create, Property
         can :create, Flat
@@ -64,13 +68,17 @@ class Ability
         can :destroy, Reply do |reply|
             reply.user == user
         end
+         can :update, Whiteboard do |whiteboard|
+            whiteboard.user == user
+        end
+        can :destroy, Whiteboard do |whiteboard|
+            whiteboard.user == user
+        end
 
         can :read, Property
         can :read, Flat
-    
-
         can :create, Ticket
-        can :create, Property
+       
         can :create, Flat
 
     elsif user.role.name == "support"
@@ -79,6 +87,7 @@ class Ability
         can :manage, Flat
         can :manage, Ticket
         can :manage, Reply
+        can :manage, Whiteboard
         
     else 
         can :read, Ticket
