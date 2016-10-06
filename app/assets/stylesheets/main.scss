@@ -181,6 +181,7 @@
     
     .prof-pic {
         padding-top: 10%;
+        text-align: center;
     }
     
     .width100 {
@@ -579,3 +580,34 @@
     .title-height {
         height: 3.5em;
     }
+    
+    .collapse-button {}
+    
+    @media (max-width: 543px) {
+        .center-sm {
+            text-align: center;
+        }
+        .unread-mes {
+            margin-right: 0;
+            margin-top: 1em;
+        }
+    }
+    
+    // Small devices (landscape phones, 544px and up)
+    @media (min-width: 544px) and (max-width: 767px) {
+        .center-sm {
+            text-align: center;
+        }
+        .unread-mes {
+            margin-top: 0.5em;
+        }
+    }
+    
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) and (max-width: 991px) {}
+    
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) and (max-width: 1199px) {}
+    
+    // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) {}
