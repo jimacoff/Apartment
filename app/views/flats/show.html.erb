@@ -33,10 +33,10 @@
 <div class="row bg-white margin-lr-0" >
   <div class="col-md-12 col-xs-12 " id="flat-details">
     <div class=" row properties-nav nav-bg">
-      <div class="col-md-8 col-xs-12" >
+      <div class="col-md-8 col-xs-4 col-sm-4" >
         <h2 class="h3white centr-title">FLAT DETAILS</h2>
       </div>
-      <div class="col-md-2 col-xs-12">
+      <div class="col-md-2 col-xs-4 col-sm-4">
         <% if can? :update, @flat%>
           <div class=" new-prop-btn text-center"><%= link_to edit_property_flat_path, class:"btn btn-lg new-btn border0" do %>
               <span class="glyphicon glyphicon-pencil"></span><span class="pad-r-1">Edit</span>
@@ -44,7 +44,7 @@
           </div>
         <% end %>
       </div>
-      <div class="col-md-2 col-xs-12">
+      <div class="col-md-2 col-xs-4 col-sm-4">
         <% if can? :update, @flat%>
           <div class=" new-prop-btn text-center "><%= link_to property_flat_path, method: :delete, class:"btn btn-lg new-btn border0" do %>
               <span class="glyphicon glyphicon-trash"></span><span class="pad-r-1">Delete</span>
@@ -208,7 +208,7 @@
   </div>
   <div class="spacer"></div>
   <%= form_for ([@property, @flat, @flat.ownerhistories.build()]) do |f| %>
-    <div class="col-md-11">
+    <div class="col-md-11 hidden-sm hidden-xs">
       <table class = "table table-bordered table-striped">
         <thead>
         </thead>
@@ -223,7 +223,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-1 new-l-owner">
+    <div class="col-md-1 new-l-owner hidden-xs hidden-sm">
       <%= f.button  class: "btn nav-bg white border0 lblue-hover" do %>
         <div class="glyphicon-plus"></div>
       <% end %>

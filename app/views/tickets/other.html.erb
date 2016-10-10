@@ -4,7 +4,7 @@
   <div class="col-md-7 col-xs-12 padding-lr-0" id="prop-img" >
     <span class="property-img-show "> <img src="/assets/1.jpg"></span>
   </div>
-  <div class=" col-md-5 col-xs-12 properties-nav ">
+  <div class=" col-md-5 col-xs-12 properties-nav hidden-sm hidden-xs">
     <div class="row ">
       <div class="col-md-12 col-xs-12 text-center">
         <h2 class="black centr-title sup-text" >Some text about ticket system</h2>
@@ -17,10 +17,10 @@
 <div class="row bg-white margin-lr-0">
   <div class="col-md-12 col-xs-12">
     <div class=" row properties-nav nav-bg">
-      <div class="col-md-9 col-xs-12" >
+      <div class="col-md-9 col-xs-6 col-sm-6" >
         <h2 class="h3white centr-title capitalize">Tickets</h2>
       </div>
-      <div class="col-md-3 col-xs-12">
+      <div class="col-md-3 col-xs-6 col-sm-6">
         <div class=" new-prop-btn text-center "><%= link_to (new_ticket_path), class:"btn btn-lg new-btn border0" do %>
             <span class="glyphicon glyphicon-plus"></span><span class="pad-r-1">New Ticket</span>
           <% end %>

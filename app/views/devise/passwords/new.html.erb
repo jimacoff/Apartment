@@ -1,32 +1,32 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-md-offset-2  col-xs-offset-2 col-sm-offset-2 col-lg-offset-2 ">
     <div class="spacer"></div>
     <div class="row bg-white margin-lr-0 ">
-      <div class="col-md-12 ">
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">
         <div class=" row properties-nav nav-bg ">
-          <div class="col-md-12" >
+          <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" >
             <h2 class="h3white centr-title capitalize">Recover Password</h2>
           </div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
         <div class="spacer2"></div>
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-lg-8">
+            <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-md-offset-2  col-xs-offset-2 col-sm-offset-2 col-lg-offset-2 ">
               <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-md-offset-2  col-xs-offset-2 col-sm-offset-2 col-lg-offset-2 ">
                   <span class="form-title"><%= f.label 'Email ' %></span>
                   <span class="form-field pad-top-forms"><%= f.email_field :email, required: true %></span>
                 </div>
                
-                <div class="col-md-12 text-center spacer">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center spacer">
                   <%= f.button class: "btn btn-lg nav-bg new-btn white border0 lblue-hover btn-ticket" do %>
                     <span class="glyphicon glyphicon-flag"></span><span class="pad-r-1">Send me reset password instructions</span>
                   <% end %>
                 </div>
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center">
                   <div class="form-title ">
                     <h4><%= render "devise/shared/links" %></h4>
                   </div>

@@ -3,7 +3,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
     <div class=" row properties-nav nav-bg ">
       <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9" >
-        <h2 class="h3white centr-title center-sm">PROPERTIES</h2>
+        <h2 class="h3white centr-title ">PROPERTIES</h2>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
         <% if can? :create, Property%>
@@ -18,7 +18,7 @@
     <div id="houses" class="row overflow">
       <% @properties.each do |property| %>
         <div class="spacer"></div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 spacerem prop-img-cont-small">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 spacerem prop-img-cont-small">
           <div class="border-dgrey">
             <div class="img-responsive " id="prop-img-small"><span class="prop-user-avatar pull-right ">
                 <% if property.user.try(:avatar) == nil then %>

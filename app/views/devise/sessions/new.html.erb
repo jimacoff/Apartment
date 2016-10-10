@@ -13,17 +13,17 @@
         <div class="spacer2"></div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-lg-8">
+            <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-md-offset-2  col-xs-offset-2 col-sm-offset-2 col-lg-offset-2 ">
               <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2 col-lg-offset-2">
                   <span class="form-title"><%= f.label 'Email ' %></span>
                   <span class="form-field pad-top-forms"><%= f.email_field :email, required: true %></span>
                 </div>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2 col-lg-offset-2">
                   <span class="form-title"><%= f.label 'Password' %></span>
                   <span class="form-field pad-top-forms"><%= f.password_field :password, autocomplete: "off", required: true %></span>
                 </div>
-                <div class="col-md-4 col-md-offset-5 ">
+                <div class="col-md-4 col-sm-6 col-xs-6 col-lg-4 col-md-offset-4  col-xs-offset-6 col-sm-offset-6 col-lg-offset-5">
                   <% if devise_mapping.rememberable? %>
                     <span><%= f.check_box :remember_me  %></span>
                     <span class="form-title"><%= f.label 'Remember me' %></span>
